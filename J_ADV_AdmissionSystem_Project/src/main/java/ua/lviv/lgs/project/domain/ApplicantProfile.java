@@ -10,6 +10,7 @@ public class ApplicantProfile {
 	User user;
 	Map<String, Byte> marksTable;
 	File marksCertificate;
+	File profilePhoto;
 	Date admissionDate;
 	boolean isApprooved;
 	boolean isAdmitted;
