@@ -6,12 +6,12 @@ import java.util.Set;
 
 public class Faculty {
 
-	Short facultyId;
-	String facultyName;
-	List<String> subjectsList;
-	Set<ApplicantProfile> applicantProfiles;
-	Short admittanceQuota;
-	Map<String, Integer> admittedApplicantsList;
+	private Short facultyId;
+	private String facultyName;
+	private List<String> subjectsList;
+	private Set<ApplicantProfile> applicantProfiles;
+	private Short admittanceQuota;
+	private Map<String, Integer> admittedApplicantsList;
 
 	public Faculty() {
 
