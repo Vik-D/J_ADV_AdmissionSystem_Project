@@ -1,12 +1,32 @@
 package ua.lviv.lgs.project.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+/*
+ * TARGET class and PARENT table in relationship with ApplicantProfile.class
+ */
+@Entity
+@Table(name = "users")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private Integer id;
+
 	private String name;
 	private String surname;
 	private String email;
 	private String password;
+	private String passwordConfirm;
+
+	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	public User() {
@@ -78,6 +98,14 @@ public class User {
 		this.role = role;
 	}
 
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -135,5 +163,5 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password="
 				+ password + ", role=" + role + "]";
 	}
-	
+
 }
