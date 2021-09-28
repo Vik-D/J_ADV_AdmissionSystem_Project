@@ -8,5 +8,6 @@ import ua.lviv.lgs.project.domain.Faculty;
 @Repository
 public interface FacultyRepository extends JpaRepository<Faculty, Short> {
 
+	
 }
  
