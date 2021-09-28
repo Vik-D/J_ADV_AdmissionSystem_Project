@@ -26,9 +26,15 @@ public class Faculty {
 	private Set<String> subjectsList;
 
 	/*
+<<<<<<< HEAD
 	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field 
 	 * of an ApplicantProfile.class and the number of admitted applicants
 	 * are defined by 'admittanceQuota' field value
+=======
+	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field of
+	 * an ApplicantProfile.class and the number of admitted applicants are defined
+	 * by 'admittanceQuota' field value
+>>>>>>> refs/heads/DAO-layer
 	 * 
 	 */
 	@OneToMany(mappedBy = "faculty")

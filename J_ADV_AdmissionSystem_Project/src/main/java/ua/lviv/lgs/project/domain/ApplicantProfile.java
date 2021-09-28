@@ -32,7 +32,11 @@ public class ApplicantProfile {
 	@MapsId
 	@JoinColumn(name = "profile_id")
 	private User user;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/heads/DAO-layer
 	@ManyToOne
 	@JoinColumn(name = "faculty_id")
 	private Faculty faculty;

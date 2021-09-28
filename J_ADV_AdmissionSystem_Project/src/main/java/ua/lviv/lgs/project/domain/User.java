@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/DAO-layer
 /*
  * TARGET class and PARENT table in relationship with ApplicantProfile.class
  */
@@ -164,4 +168,8 @@ public class User {
 				+ password + ", role=" + role + "]";
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/heads/DAO-layer
