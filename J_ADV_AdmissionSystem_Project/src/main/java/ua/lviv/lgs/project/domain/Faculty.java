@@ -1,42 +1,60 @@
 package ua.lviv.lgs.project.domain;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "faculty_list")
 public class Faculty {
 
-	Short facultyId;
-	String facultyName;
-	List<String> subjectsList;
-	Set<ApplicantProfile> applicantProfiles;
-	Short admittanceQuota;
-	Map<String, Integer> admittedApplicantsList;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "faculty_id")
+	private Short facultyId;
+	private String facultyName;
+
+	@ElementCollection
+	@Column(name = "subjects_list")
+	private Set<String> subjectsList;
+
+	/*
+	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field of
+	 * an ApplicantProfile.class and the number of admitted applicants are defined
+	 * by 'admittanceQuota' field value
+	 * 
+	 */
+	@OneToMany(mappedBy = "faculty")
+	private Set<ApplicantProfile> applicantProfiles;
+
+	private Short admittanceQuota;
 
 	public Faculty() {
 
 	}
 
-	public Faculty(String facultyName, List<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
-			Short admittanceQuota, Map<String, Integer> admittedApplicantsList) {
-		super();
+	public Faculty(String facultyName, Set<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
+			Short admittanceQuota) {
 		this.facultyName = facultyName;
 		this.subjectsList = subjectsList;
 		this.applicantProfiles = applicantProfiles;
 		this.admittanceQuota = admittanceQuota;
-		this.admittedApplicantsList = admittedApplicantsList;
 	}
 
-	public Faculty(Short facultyId, String facultyName, List<String> subjectsList,
-			Set<ApplicantProfile> applicantProfiles, Short admittanceQuota,
-			Map<String, Integer> admittedApplicantsList) {
-		super();
+	public Faculty(Short facultyId, String facultyName, Set<String> subjectsList,
+			Set<ApplicantProfile> applicantProfiles, Short admittanceQuota) {
 		this.facultyId = facultyId;
 		this.facultyName = facultyName;
 		this.subjectsList = subjectsList;
 		this.applicantProfiles = applicantProfiles;
 		this.admittanceQuota = admittanceQuota;
-		this.admittedApplicantsList = admittedApplicantsList;
 	}
 
 	public Short getFacultyId() {
@@ -55,11 +73,11 @@ public class Faculty {
 		this.facultyName = facultyName;
 	}
 
-	public List<String> getSubjectsList() {
+	public Set<String> getSubjectsList() {
 		return subjectsList;
 	}
 
-	public void setSubjectsList(List<String> subjectsList) {
+	public void setSubjectsList(Set<String> subjectsList) {
 		this.subjectsList = subjectsList;
 	}
 
@@ -79,20 +97,11 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Map<String, Integer> getAdmittedApplicantsList() {
-		return admittedApplicantsList;
-	}
-
-	public void setAdmittedApplicantsList(Map<String, Integer> admittedApplicantsList) {
-		this.admittedApplicantsList = admittedApplicantsList;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((admittanceQuota == null) ? 0 : admittanceQuota.hashCode());
-		result = prime * result + ((admittedApplicantsList == null) ? 0 : admittedApplicantsList.hashCode());
 		result = prime * result + ((applicantProfiles == null) ? 0 : applicantProfiles.hashCode());
 		result = prime * result + ((facultyId == null) ? 0 : facultyId.hashCode());
 		result = prime * result + ((facultyName == null) ? 0 : facultyName.hashCode());
@@ -113,11 +122,6 @@ public class Faculty {
 			if (other.admittanceQuota != null)
 				return false;
 		} else if (!admittanceQuota.equals(other.admittanceQuota))
-			return false;
-		if (admittedApplicantsList == null) {
-			if (other.admittedApplicantsList != null)
-				return false;
-		} else if (!admittedApplicantsList.equals(other.admittedApplicantsList))
 			return false;
 		if (applicantProfiles == null) {
 			if (other.applicantProfiles != null)
@@ -145,8 +149,7 @@ public class Faculty {
 	@Override
 	public String toString() {
 		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectsList=" + subjectsList
-				+ ", applicantProfiles=" + applicantProfiles + ", admittanceQuota=" + admittanceQuota
-				+ ", admittedApplicantsList=" + admittedApplicantsList + "]";
+				+ ", applicantProfiles=" + applicantProfiles + ", admittanceQuota=" + admittanceQuota + "]";
 	}
 
 }
