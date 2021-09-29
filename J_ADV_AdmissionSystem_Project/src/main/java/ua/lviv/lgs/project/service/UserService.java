@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import ua.lviv.lgs.project.dao.UserRepository;
 import ua.lviv.lgs.project.domain.Role;
 import ua.lviv.lgs.project.domain.User;
-
+/*
+ * Encrypting the password and setting it into a User.class instance
+ */
 @Service
 public class UserService {
 
