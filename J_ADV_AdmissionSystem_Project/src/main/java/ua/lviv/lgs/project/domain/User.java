@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /*
- * TARGET class and PARENT table in relationship with ApplicantProfile.class
+ * This is TARGET class and PARENT table in relationship with ApplicantProfile.class
  */
 @Entity
 @Table(name = "users")
@@ -49,6 +49,15 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.role = role;
+	}
+
+	public User(User user) {
+		this.id = user.id;
+		this.name = user.name;
+		this.surname = user.surname;
+		this.email = user.email;
+		this.password = user.password;
+		this.role = user.role;
 	}
 
 	public Integer getId() {

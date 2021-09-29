@@ -14,7 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /*
- * SOURCE class (OWNER of the relationship) and CHILD table in relationship with User.class
+ * This is SOURCE class (OWNER of the relationship) and CHILD table in relationship with User.class
+ * It means this class CONTAINS A REFERENCE to other entity
  */
 @Entity
 @Table(name = "applicant_profiles")
@@ -38,12 +39,13 @@ public class ApplicantProfile {
 	private Faculty faculty;
 
 	/*
-	 * A map represents simple table of subject names and corresponding marks on
-	 * each subject in such a way: each Map`s Entry contains <String [subjectName],
-	 * Byte [subjectMarks]>
+	 * A map represents simple table of subject names 
+	 * and corresponding marks on each subject in such a way: 
+	 * each Map`s Entry contains <String [subjectName], Byte [subjectMarks]>
 	 */
 	@ElementCollection
 	private Map<String, Byte> marksTable;
+	
 	private Short totalMarksAmount;
 	private byte[] marksCertificate;
 	private byte[] profilePhoto;
