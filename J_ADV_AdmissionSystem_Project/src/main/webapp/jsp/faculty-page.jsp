@@ -30,8 +30,7 @@
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="/users" class="w3-bar-item w3-button">Registered users list</a>
-		<a href="/faculties" class="w3-bar-item w3-button">Faculties list</a>
+		<a href="#" class="w3-bar-item w3-button">Enrolled applicants list</a>
 	</div>
 
 	<!-- Page Content -->
@@ -39,7 +38,7 @@
 	
 	
 		<div class="w3-container w3-teal">
-			<h1> ${list} </h1>
+			<h1> ${list} FACULTY </h1>
 		</div>
 
 		<div class="w3-container">
@@ -54,25 +53,6 @@
 			 </h2>
 		   </c:if>
 
-			<c:choose>
-				<c:when test="${mode == 'FACULTIES_LIST' }">
-					<table class="lists-table">
-						<tr>
-							<th>Faculty name</th>
-							<th>Enrollment</th>
-						</tr>
-						<c:forEach var="faculty" items="${faculties_list}">
-							<tr>
-								<td>${faculty.facultyName}</td>
-								<td><a href="enroll?id=${faculty.facultyId}">Press to enroll</a></td>
-							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</c:forEach>
-					</table>
-				</c:when>
-				
-			  <%--   <c:when test="${mode == 'APPLICANTS_LIST' }">
 					<table class="lists-table">
 						<tr>
 							<th>Name</th>
@@ -89,27 +69,7 @@
 								value="${_csrf.token}" />
 						</c:forEach>
 					</table>
-				</c:when>  --%>
-			
-				 <c:when test="${mode == 'USERS_LIST' }">
-					<table class="lists-table">
-						<tr>
-							<th>Surname</th>
-							<th>Name</th>
-						</tr>
-						<c:forEach var="user" items="${users_list}">
-							<tr>
-								<td>${user.surname}</td>
-								<td>${user.name}</td>
-							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</c:forEach>
-					</table>
-				</c:when>
-				
-				
-			</c:choose>
+				  
 
 				<!-- / END class="w3-container" / -->
 		</div>
