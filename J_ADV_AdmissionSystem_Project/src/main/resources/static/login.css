@@ -8,9 +8,15 @@
 .text-center{
 	display: inline-block;
 	padding-top: 5%;
-	margin-top:  0, 0, 0, -10%;
+	margin:  0, 0, 0, -10%;
 }
 
 .text-center a:hover{
-	color: #7dc9f5;
+	color: #03fc3d;
+}
+
+div .form-group span{
+	color: #ff481f;
+	 text-shadow: 0.4px 1px 7px #edff2e;
+	 letter-spacing: 1px;
 }
