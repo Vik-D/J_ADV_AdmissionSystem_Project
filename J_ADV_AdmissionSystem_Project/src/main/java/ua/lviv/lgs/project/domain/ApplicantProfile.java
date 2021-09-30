@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /*
  * This is SOURCE class (OWNER of the relationship) and CHILD table in relationship with User.class
- * It means this class CONTAINS A REFERENCE to other entity
+ * It means this class CONTAINS A REFERENCE to other entity/table
  */
 @Entity
 @Table(name = "applicant_profiles")
