@@ -15,7 +15,7 @@
 	color: #03fc3d;
 }
 
-div .form-group span{
+div .form-group span.error-msg{
 	color: #ff481f;
 	 text-shadow: 0.4px 1px 7px #edff2e;
 	 letter-spacing: 1px;

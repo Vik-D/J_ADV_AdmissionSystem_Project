@@ -35,4 +35,8 @@ public class UserService {
 				.sorted((u1, u2)-> u1.getSurname().compareToIgnoreCase(u2.getSurname()))
 				.collect(Collectors.toList()); 
 	}
+	
+	public User getUserByUsername(String email) {
+		return userRepository.findByEmail(email).get();
+	}
 }

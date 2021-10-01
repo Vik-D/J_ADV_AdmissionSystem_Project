@@ -13,20 +13,27 @@ public class FacultyController {
 
 	@Autowired
 	private FacultyService facultyService;
-	
-	
+
 	@GetMapping("/faculties")
-	public String initFacultiesList( HttpServletRequest req) {
+	public String initFacultiesList(HttpServletRequest req) {
 		req.setAttribute("faculties_list", facultyService.getAllFaculties());
 		req.setAttribute("mode", "FACULTIES_LIST");
-		req.setAttribute("list","Faculties list");
+		req.setAttribute("list", "Faculties list");
 		return "home";
 	}
-	
+
 	@GetMapping("/enroll")
 	public String enroll(HttpServletRequest req) {
-		req.setAttribute("list", facultyService.getFacultyName(Short.parseShort(req.getQueryString().substring(3)))); 
-		return "faculty-page"; 
+		Short faculty_id = Short.parseShort(req.getQueryString().substring(3));
+		req.setAttribute("subjects", facultyService.getSubjectsListByFacultyID(faculty_id));
+		req.setAttribute("list", facultyService.getFacultyName(faculty_id));
+		req.setAttribute("facultyID", faculty_id);
+		return "faculty-page";
 	}
-	
+
+//	@GetMapping("/faculty-page")
+//	public String subjects(HttpServletRequest req, Model model) {
+//		return "faculty-page";
+//	}
+
 }

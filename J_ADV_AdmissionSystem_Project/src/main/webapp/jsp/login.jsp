@@ -36,7 +36,7 @@
                             <label for="password">Password</label>
                             <input type="password" class="form-control" name="password" placeholder="Password">
                             
-                          <span>${error}</span>
+                          <span class="error-msg">${error}</span>
                         </div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                         <input type="submit" value="Submit" class="btn btn-primary">

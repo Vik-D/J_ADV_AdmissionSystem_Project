@@ -1,18 +1,21 @@
 package ua.lviv.lgs.project.domain;
 
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "faculty_list")
+@Table(name = "faculties")
 public class Faculty {
 
 	@Id
@@ -22,8 +25,9 @@ public class Faculty {
 	private String facultyName;
 
 	@ElementCollection
-	@Column(name = "subjects_list")
-	private Set<String> subjectsList;
+	@CollectionTable(name = "subjects_list", joinColumns = @JoinColumn(name = "fclt_id",referencedColumnName = "faculty_id"))
+	@Column(name = "subject", nullable = false)
+	private List<String> subjectsList;
 
 	/*
 	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field of
@@ -40,7 +44,7 @@ public class Faculty {
 
 	}
 
-	public Faculty(String facultyName, Set<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
+	public Faculty(String facultyName, List<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
 			Short admittanceQuota) {
 		this.facultyName = facultyName;
 		this.subjectsList = subjectsList;
@@ -48,7 +52,7 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Faculty(Short facultyId, String facultyName, Set<String> subjectsList,
+	public Faculty(Short facultyId, String facultyName, List<String> subjectsList,
 			Set<ApplicantProfile> applicantProfiles, Short admittanceQuota) {
 		this.facultyId = facultyId;
 		this.facultyName = facultyName;
@@ -73,11 +77,11 @@ public class Faculty {
 		this.facultyName = facultyName;
 	}
 
-	public Set<String> getSubjectsList() {
+	public List<String> getSubjectsList() {
 		return subjectsList;
 	}
 
-	public void setSubjectsList(Set<String> subjectsList) {
+	public void setSubjectsList(List<String> subjectsList) {
 		this.subjectsList = subjectsList;
 	}
 

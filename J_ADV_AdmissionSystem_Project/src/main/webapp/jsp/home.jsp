@@ -19,7 +19,7 @@
 
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="lists_table.css" type="text/css" >
+<link rel="stylesheet" href="home.css" type="text/css" >
 </head>
 <body>
 
@@ -39,20 +39,20 @@
 	
 	
 		<div class="w3-container w3-teal">
-			<h1> ${list} </h1>
-		</div>
-
-		<div class="w3-container">
-		  <c:if test="${pageContext.request.userPrincipal.name != null}">
+			
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
 			 <form id="logoutForm" method="POST" action="${contextPath}/logout">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 </form>
-			 <h2>
-				Welcome ${pageContext.request.userPrincipal.name} | 
-				<button  onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
-				
+			 <h1> ${list} </h1>
+			 <h2> You are logged in as "${pageContext.request.userPrincipal.name}"  | 
+				<button class="user-logout-button"  onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>	
 			 </h2>
 		   </c:if>
+		   
+		</div>
+
+		<div class="w3-container">
 
 			<c:choose>
 				<c:when test="${mode == 'FACULTIES_LIST' }">
@@ -66,8 +66,7 @@
 								<td>${faculty.facultyName}</td>
 								<td><a href="enroll?id=${faculty.facultyId}">Press to enroll</a></td>
 							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 				</c:when>
@@ -102,8 +101,7 @@
 								<td>${user.surname}</td>
 								<td>${user.name}</td>
 							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 				</c:when>

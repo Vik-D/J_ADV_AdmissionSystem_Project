@@ -27,4 +27,8 @@ public class FacultyService {
 		return facultyRepository.findById(id).get().getFacultyName();
 	}
 	
+	public List<String> getSubjectsListByFacultyID(Short id) {
+		return facultyRepository.findById(id).get().getSubjectsList(); 
+	}
+	
 }

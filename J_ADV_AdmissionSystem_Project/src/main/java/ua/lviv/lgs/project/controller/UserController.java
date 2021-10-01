@@ -34,17 +34,19 @@ public class UserController {
 		}
 		userService.save(userForm);
 		req.setAttribute("list", "Welcome!");
+		req.getSession(true).setAttribute("username", userForm.getEmail());
 		return "redirect:/home";
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model, String error, String logout) {
+	public String login(Model model, String error, String logout, HttpServletRequest req) {
 		if (error != null) {
 			model.addAttribute("error", "Your username or password is invalid");
 		}
 		if (logout != null) {
 			model.addAttribute("message", "You have been logged out successfully.");
 		}
+		
 		return "login";
 	}
 
@@ -56,6 +58,12 @@ public class UserController {
 	 *  }
 	 */
 
+	@GetMapping("/faculty-page")
+	public String registerApplicant(HttpServletRequest req) {
+		req.setAttribute("user", userService.getUserByUsername(req.getSession().getAttribute("username").toString()));
+		return "faculty-page";
+	}
+	
 	@GetMapping("/users")
 	public String listAllApplicants(HttpServletRequest req) {
 		req.setAttribute("users_list", userService.getAllUsersBySurnameAlphabeticalOrder());
@@ -70,4 +78,4 @@ public class UserController {
         return "home";
     }
 
-}
+} 
