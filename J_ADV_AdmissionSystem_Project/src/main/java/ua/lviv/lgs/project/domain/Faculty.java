@@ -25,7 +25,7 @@ public class Faculty {
 	private String facultyName;
 
 	@ElementCollection
-	@CollectionTable(name = "subjects_list", joinColumns = @JoinColumn(name = "fclt_id",referencedColumnName = "faculty_id"))
+	@CollectionTable(name = "subjects_list", joinColumns = @JoinColumn(name = "fclt_id", referencedColumnName = "faculty_id"))
 	@Column(name = "subject", nullable = false)
 	private List<String> subjectsList;
 

@@ -31,6 +31,8 @@ public class FacultyController {
 		return "faculty-page";
 	}
 
+//	********************* TO BE REVIEWED *************************
+
 //	@GetMapping("/faculty-page")
 //	public String subjects(HttpServletRequest req, Model model) {
 //		return "faculty-page";

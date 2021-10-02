@@ -54,7 +54,9 @@
 
 		<div class="w3-container">
 
-              <%-- 	<table class="lists-table">
+              <%-- 	*************** TO BE FURTHER REVIEWED, REDESIGNED AND ENCORPORATED ***************
+              
+              <table class="lists-table">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
@@ -69,7 +71,9 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</c:forEach>
-					</table> --%>
+					</table>
+					 
+					*****************************************************                  --%>
 
 
 			<div class="container">
@@ -81,12 +85,11 @@
 					
 					<c:set var="currentUser" value="<%= pageContext.findAttribute(\"user\") %>" /> 
 					
-					
 							<!-- Text input-->
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="textinput">Check your first name (change if incorrect)</label>
 								<div class="col-md-4">
-									<input id="textinput" name="textinput" value="${currentUser.getName() }"
+									<input id="textinput" name="textinput" value="${currentUser.name}"
 									class="form-control input-md" type="text">
 									<span class="help-block"> </span>
 								</div>
@@ -96,7 +99,7 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="textinput">Check your last name (change if incorrect)</label>
 								<div class="col-md-4">
-									<input id="textinput" name="textinput" value="${currentUser.name}" class="form-control input-md" type="text">
+									<input id="textinput" name="textinput" value="${currentUser.surname}" class="form-control input-md" type="text">
 									<span class="help-block"> </span>
 								</div>
 							</div>

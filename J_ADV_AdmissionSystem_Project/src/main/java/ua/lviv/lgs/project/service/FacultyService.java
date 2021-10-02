@@ -13,22 +13,21 @@ public class FacultyService {
 
 	@Autowired
 	private FacultyRepository facultyRepository;
-	
-	
-	public List<Faculty> getAllFaculties(){
+
+	public List<Faculty> getAllFaculties() {
 		return facultyRepository.findAll();
 	}
-	
+
 	public Faculty findOneFacultyById(Short id) {
 		return facultyRepository.findById(id).get();
 	}
-	
+
 	public String getFacultyName(Short id) {
 		return facultyRepository.findById(id).get().getFacultyName();
 	}
-	
+
 	public List<String> getSubjectsListByFacultyID(Short id) {
-		return facultyRepository.findById(id).get().getSubjectsList(); 
+		return facultyRepository.findById(id).get().getSubjectsList();
 	}
-	
+
 }

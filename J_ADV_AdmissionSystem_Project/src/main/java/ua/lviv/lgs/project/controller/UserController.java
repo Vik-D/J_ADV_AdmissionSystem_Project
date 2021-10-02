@@ -27,55 +27,54 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model,
-			HttpServletRequest req) {
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
 		userService.save(userForm);
-		req.setAttribute("list", "Welcome!");
-		req.getSession(true).setAttribute("username", userForm.getEmail());
 		return "redirect:/home";
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)
-	public String login(Model model, String error, String logout, HttpServletRequest req) {
+	public String login(Model model, String error, String logout) {
 		if (error != null) {
 			model.addAttribute("error", "Your username or password is invalid");
 		}
 		if (logout != null) {
 			model.addAttribute("message", "You have been logged out successfully.");
 		}
-		
+
 		return "login";
 	}
 
-	/*
-	 * @GetMapping("/applicants") public String listAllApplicants(HttpServletRequest req) {
-	 *  req.setAttribute("mode", "APPLICANTS_LIST"); 
-	 *  req.setAttribute("list", "Applicants list");
-	 *  return "home"; 
-	 *  }
-	 */
-
-	@GetMapping("/faculty-page")
-	public String registerApplicant(HttpServletRequest req) {
-		req.setAttribute("user", userService.getUserByUsername(req.getSession().getAttribute("username").toString()));
-		return "faculty-page";
-	}
-	
 	@GetMapping("/users")
-	public String listAllApplicants(HttpServletRequest req) {
+	public String listAllRegisteredUsers(HttpServletRequest req) {
 		req.setAttribute("users_list", userService.getAllUsersBySurnameAlphabeticalOrder());
 		req.setAttribute("mode", "USERS_LIST");
 		req.setAttribute("list", "Registered users list");
 		return "home";
 	}
-	
-	@RequestMapping(value ="/home", method = RequestMethod.GET)
-	public String welcome(Model model, HttpServletRequest req) {
-		req.setAttribute("list", "Welcome!");
-        return "home";
-    }
 
-} 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String welcome(Model model, HttpServletRequest req) {
+		req.getSession(true).setAttribute("user",
+				userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString()));
+		req.setAttribute("list", "Welcome!");
+		return "home";
+	}
+
+	// ***************** TO BE REVIEWED **********************
+
+//	@GetMapping("/applicants")
+//	public String listAllApplicants(HttpServletRequest req) {
+//		req.setAttribute("mode", "APPLICANTS_LIST");
+//		req.setAttribute("list", "Applicants list");
+//		return "home";
+//	}
+//
+//	@GetMapping("/faculty-page")
+//	public String registerApplicant(HttpServletRequest req) {
+//		return "faculty-page";
+//	}
+
+}
