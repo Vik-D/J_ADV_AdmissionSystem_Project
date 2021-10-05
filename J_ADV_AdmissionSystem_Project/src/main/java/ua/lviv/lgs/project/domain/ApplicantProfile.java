@@ -3,6 +3,7 @@ package ua.lviv.lgs.project.domain;
 import java.util.Arrays;
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -35,7 +36,7 @@ public class ApplicantProfile {
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "faculty_id")
+	@JoinColumn(name = "apf_faculty_id")
 	private Faculty faculty;
 
 	/*
@@ -44,6 +45,7 @@ public class ApplicantProfile {
 	 * each Map`s Entry contains <String [subjectName], Byte [subjectMarks]>
 	 */
 	@ElementCollection
+	@CollectionTable(name = "applicant_marks_table")
 	private Map<String, Byte> marksTable;
 	
 	private Short totalMarksAmount;

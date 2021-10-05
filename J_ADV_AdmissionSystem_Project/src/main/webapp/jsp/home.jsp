@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Welcome</title>
+<title>Home page</title>
 
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -64,7 +64,7 @@
 						<c:forEach var="faculty" items="${faculties_list}">
 							<tr>
 								<td>${faculty.facultyName}</td>
-								<td><a href="enroll?id=${faculty.facultyId}">Press to enroll</a></td>
+								<td><a href="enroll_${faculty.facultyId}">Press to enroll</a></td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>

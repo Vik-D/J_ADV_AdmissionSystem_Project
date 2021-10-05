@@ -1,6 +1,5 @@
 package ua.lviv.lgs.project.domain;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -21,17 +20,18 @@ public class Faculty {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "faculty_id")
-	private Short facultyId;
+	private Integer facultyId;
+	
 	private String facultyName;
 
 	@ElementCollection
 	@CollectionTable(name = "subjects_list", joinColumns = @JoinColumn(name = "fclt_id", referencedColumnName = "faculty_id"))
 	@Column(name = "subject", nullable = false)
-	private List<String> subjectsList;
+	private Set<String> subjectsList;
 
 	/*
-	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field of
-	 * an ApplicantProfile.class and the number of admitted applicants are defined
+	 * Sort all the profiles descending by 'totalMarksAmount' field of
+	 * an ApplicantProfile.class and define the number of admitted applicants 
 	 * by 'admittanceQuota' field value
 	 * 
 	 */
@@ -44,7 +44,7 @@ public class Faculty {
 
 	}
 
-	public Faculty(String facultyName, List<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
+	public Faculty(String facultyName, Set<String> subjectsList, Set<ApplicantProfile> applicantProfiles,
 			Short admittanceQuota) {
 		this.facultyName = facultyName;
 		this.subjectsList = subjectsList;
@@ -52,7 +52,7 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Faculty(Short facultyId, String facultyName, List<String> subjectsList,
+	public Faculty(Integer facultyId, String facultyName, Set<String> subjectsList,
 			Set<ApplicantProfile> applicantProfiles, Short admittanceQuota) {
 		this.facultyId = facultyId;
 		this.facultyName = facultyName;
@@ -61,11 +61,11 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Short getFacultyId() {
+	public Integer getFacultyId() {
 		return facultyId;
 	}
 
-	public void setFacultyId(Short facultyId) {
+	public void setFacultyId(Integer facultyId) {
 		this.facultyId = facultyId;
 	}
 
@@ -77,11 +77,11 @@ public class Faculty {
 		this.facultyName = facultyName;
 	}
 
-	public List<String> getSubjectsList() {
+	public Set<String> getSubjectsList() {
 		return subjectsList;
 	}
 
-	public void setSubjectsList(List<String> subjectsList) {
+	public void setSubjectsList(Set<String> subjectsList) {
 		this.subjectsList = subjectsList;
 	}
 
@@ -100,6 +100,17 @@ public class Faculty {
 	public void setAdmittanceQuota(Short admittanceQuota) {
 		this.admittanceQuota = admittanceQuota;
 	}
+	
+	public void addApplicantProfile(ApplicantProfile profile) {
+		applicantProfiles.add(profile);
+		profile.setFaculty(this);
+	}
+	
+	public void removeApplicantProfile(ApplicantProfile profile) {
+		applicantProfiles.remove(profile);
+		profile.setFaculty(null);
+	}
+	
 
 	@Override
 	public int hashCode() {

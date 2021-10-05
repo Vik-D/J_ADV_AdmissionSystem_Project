@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -14,7 +15,7 @@
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <!-- REGISTRATION FORM SOURCE-CODE URL: >>>>>>>> https://bootsnipp.com/snippets/RlmZA -->
 
-<title>Welcome</title>
+<title>Faculty page</title>
 
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
@@ -74,90 +75,7 @@
 					</table>
 					 
 					*****************************************************                  --%>
-
-
-			<div class="container">
-				<div class="row">
-					<h2>Enrollment Form</h2>
-
-					<form class="form-horizontal">
-						<fieldset>	
-					
-					<c:set var="currentUser" value="<%= pageContext.findAttribute(\"user\") %>" /> 
-					
-							<!-- Text input-->
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">Check your first name (change if incorrect)</label>
-								<div class="col-md-4">
-									<input id="textinput" name="textinput" value="${currentUser.name}"
-									class="form-control input-md" type="text">
-									<span class="help-block"> </span>
-								</div>
-							</div>
-
-							<!-- Text input-->
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">Check your last name (change if incorrect)</label>
-								<div class="col-md-4">
-									<input id="textinput" name="textinput" value="${currentUser.surname}" class="form-control input-md" type="text">
-									<span class="help-block"> </span>
-								</div>
-							</div>
-
-							<!-- Text input-->
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="textinput">Check your email (change if incorrect)</label>
-								<div class="col-md-4">
-									<input id="textinput" name="textinput" value="${pageContext.request.userPrincipal.name}" 
-									 class="form-control input-md" type="text"> <span class="help-block">
-									</span>
-								</div>
-							</div>
-							<p class="alert-msg" style="margin-left: 105px; display: inline-block"> Enter your marks from certificate into each of the required subjects field accordingly! </p>
-							
-							<c:forEach var="subject" items="${subjects}">
-							
-							<!-- Text input-->
-							<div class="form-group">
-								
-								<label class="col-md-4 control-label" for="textinput"> ${subject} </label>
-								<div class="col-md-4">
-									<input id="textinput" name="textinput" placeholder="REQUIRED SUBJECT!!! Enter your marks here! " 
-									 class="form-control input-md" type="text"> <span class="help-block">
-									</span>
-								</div>
-							</div>
-							
-							</c:forEach>
-
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton">Upload your school marks certificate </label>
-								<div class="col-md-4">
-									<input name="filebutton" class="input-file" id="textfilebutton" type="file">
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton">Upload your photo</label>
-								<div class="col-md-4">
-									<input name="filebutton" class="input-file" id="photofilebutton" type="file">
-								</div>
-							</div>
-
-							<!-- Button -->
-							<div class="form-group">
-								<label class="col-md-4 control-label" for="singlebutton"> </label>
-								<div class="col-md-4">
-									<button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
-								</div>
-							</div>
-
-						</fieldset>
-					</form>
-
-				</div>
-			</div>
-
+		
 
 			<!-- / END class="w3-container" / -->
 		</div>
