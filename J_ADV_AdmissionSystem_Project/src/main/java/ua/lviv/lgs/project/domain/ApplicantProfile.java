@@ -3,10 +3,12 @@ package ua.lviv.lgs.project.domain;
 import java.util.Arrays;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,12 +32,12 @@ public class ApplicantProfile {
 	 * Ensuring that id-numbers of User-entity and ApplicantProfile-entity are
 	 * shared and thus the same
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "profile_id")
 	private User user;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "apf_faculty_id")
 	private Faculty faculty;
 
