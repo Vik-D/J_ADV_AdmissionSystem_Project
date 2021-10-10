@@ -15,22 +15,20 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Welcome</title>
+<title>Home page</title>
 
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="lists_table.css" type="text/css" >
+<link rel="stylesheet" href="home.css" type="text/css" >
 </head>
 <body>
-
-
-
 
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
 		<a href="/users" class="w3-bar-item w3-button">Registered users list</a>
+		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
 		<a href="/faculties" class="w3-bar-item w3-button">Faculties list</a>
 	</div>
 
@@ -39,20 +37,20 @@
 	
 	
 		<div class="w3-container w3-teal">
-			<h1> ${list} </h1>
-		</div>
-
-		<div class="w3-container">
-		  <c:if test="${pageContext.request.userPrincipal.name != null}">
+			
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
 			 <form id="logoutForm" method="POST" action="${contextPath}/logout">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			 </form>
-			 <h2>
-				Welcome ${pageContext.request.userPrincipal.name} | 
-				<button  onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
-				
+			 <h1> ${list} </h1>
+			 <h2> You are logged in as "${pageContext.request.userPrincipal.name}"  | 
+				<button class="user-logout-button"  onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>	
 			 </h2>
 		   </c:if>
+		   
+		</div>
+
+		<div class="w3-container">
 
 			<c:choose>
 				<c:when test="${mode == 'FACULTIES_LIST' }">
@@ -64,32 +62,34 @@
 						<c:forEach var="faculty" items="${faculties_list}">
 							<tr>
 								<td>${faculty.facultyName}</td>
-								<td><a href="enroll?id=${faculty.facultyId}">Press to enroll</a></td>
+								<td><a href="enroll_${faculty.facultyId}">Press to enroll</a></td>
 							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 				</c:when>
 				
-			  <%--   <c:when test="${mode == 'APPLICANTS_LIST' }">
+			    <c:when test="${mode == 'APPLICANTS_LIST' }">
 					<table class="lists-table">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
-							<th>Personal Cabinet</th>
+							<th>Faculty</th>
+							<th>Marks total</th>
+							
 						</tr>
 						<c:forEach var="applicant" items="${applicants_list}">
 							<tr>
 								<td>${applicant.getUser().getName()}</td>
 								<td>${applicant.getUser().getSurname()}</td>
-								<td><a href="enterCabinet?id=${applicant.profileId}"></a></td>
+								<td>${applicant.getFaculty().getFacultyName()}</td>
+								<td>${applicant.getTotalMarksAmount()}</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</c:forEach>
 					</table>
-				</c:when>  --%>
+				</c:when>  
 			
 				 <c:when test="${mode == 'USERS_LIST' }">
 					<table class="lists-table">
@@ -102,8 +102,7 @@
 								<td>${user.surname}</td>
 								<td>${user.name}</td>
 							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 				</c:when>
@@ -117,8 +116,6 @@
 		<!-- / END Page Content / -->
 	</div>
 
-
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

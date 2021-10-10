@@ -27,13 +27,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model,
-			HttpServletRequest req) {
+	public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
 		userService.save(userForm);
-		req.setAttribute("list", "Welcome!");
 		return "redirect:/home";
 	}
 
@@ -45,29 +43,24 @@ public class UserController {
 		if (logout != null) {
 			model.addAttribute("message", "You have been logged out successfully.");
 		}
+
 		return "login";
 	}
 
-	/*
-	 * @GetMapping("/applicants") public String listAllApplicants(HttpServletRequest req) {
-	 *  req.setAttribute("mode", "APPLICANTS_LIST"); 
-	 *  req.setAttribute("list", "Applicants list");
-	 *  return "home"; 
-	 *  }
-	 */
-
 	@GetMapping("/users")
-	public String listAllApplicants(HttpServletRequest req) {
+	public String listAllRegisteredUsers(HttpServletRequest req) {
 		req.setAttribute("users_list", userService.getAllUsersBySurnameAlphabeticalOrder());
 		req.setAttribute("mode", "USERS_LIST");
 		req.setAttribute("list", "Registered users list");
 		return "home";
 	}
-	
-	@RequestMapping(value ="/home", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String welcome(Model model, HttpServletRequest req) {
+		req.getSession(true).setAttribute("user",
+				userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString()));
 		req.setAttribute("list", "Welcome!");
-        return "home";
-    }
+		return "home";
+	}
 
 }

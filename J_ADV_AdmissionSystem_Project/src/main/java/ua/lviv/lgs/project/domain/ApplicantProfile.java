@@ -3,9 +3,12 @@ package ua.lviv.lgs.project.domain;
 import java.util.Arrays;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,13 +32,13 @@ public class ApplicantProfile {
 	 * Ensuring that id-numbers of User-entity and ApplicantProfile-entity are
 	 * shared and thus the same
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "profile_id")
 	private User user;
 
-	@ManyToOne
-	@JoinColumn(name = "faculty_id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "apf_faculty_id", referencedColumnName = "faculty_id")
 	private Faculty faculty;
 
 	/*
@@ -44,11 +47,13 @@ public class ApplicantProfile {
 	 * each Map`s Entry contains <String [subjectName], Byte [subjectMarks]>
 	 */
 	@ElementCollection
+	@CollectionTable(name = "applicant_marks_table")
 	private Map<String, Byte> marksTable;
 	
 	private Short totalMarksAmount;
 	private byte[] marksCertificate;
 	private byte[] profilePhoto;
+	private boolean isEnrolled;
 	private boolean isApprooved;
 	private boolean isAdmitted;
 
@@ -94,6 +99,14 @@ public class ApplicantProfile {
 		this.user = user;
 	}
 
+	public Faculty getFaculty() {
+		return faculty;
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
+	}
+
 	public Map<String, Byte> getMarksTable() {
 		return marksTable;
 	}
@@ -116,6 +129,14 @@ public class ApplicantProfile {
 
 	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
+	}
+
+	public boolean isEnrolled() {
+		return isEnrolled;
+	}
+
+	public void setEnrolled(boolean isEnrolled) {
+		this.isEnrolled = isEnrolled;
 	}
 
 	public boolean isApprooved() {
@@ -146,8 +167,10 @@ public class ApplicantProfile {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((faculty == null) ? 0 : faculty.hashCode());
 		result = prime * result + (isAdmitted ? 1231 : 1237);
 		result = prime * result + (isApprooved ? 1231 : 1237);
+		result = prime * result + (isEnrolled ? 1231 : 1237);
 		result = prime * result + Arrays.hashCode(marksCertificate);
 		result = prime * result + ((marksTable == null) ? 0 : marksTable.hashCode());
 		result = prime * result + ((profileId == null) ? 0 : profileId.hashCode());
@@ -166,9 +189,16 @@ public class ApplicantProfile {
 		if (getClass() != obj.getClass())
 			return false;
 		ApplicantProfile other = (ApplicantProfile) obj;
+		if (faculty == null) {
+			if (other.faculty != null)
+				return false;
+		} else if (!faculty.equals(other.faculty))
+			return false;
 		if (isAdmitted != other.isAdmitted)
 			return false;
 		if (isApprooved != other.isApprooved)
+			return false;
+		if (isEnrolled != other.isEnrolled)
 			return false;
 		if (!Arrays.equals(marksCertificate, other.marksCertificate))
 			return false;
@@ -199,10 +229,10 @@ public class ApplicantProfile {
 
 	@Override
 	public String toString() {
-		return "ApplicantProfile [profileId=" + profileId + ", user=" + user + ", marksTable=" + marksTable
-				+ ", totalMarksAmount=" + totalMarksAmount + ", marksCertificate=" + Arrays.toString(marksCertificate)
-				+ ", profilePhoto=" + Arrays.toString(profilePhoto) + ", isApprooved=" + isApprooved + ", isAdmitted="
-				+ isAdmitted + "]";
+		return "ApplicantProfile [profileId=" + profileId + ", user=" + user + ", faculty=" + faculty + ", marksTable="
+				+ marksTable + ", totalMarksAmount=" + totalMarksAmount + ", marksCertificate="
+				+ Arrays.toString(marksCertificate) + ", profilePhoto=" + Arrays.toString(profilePhoto)
+				+ ", isEnrolled=" + isEnrolled + ", isApprooved=" + isApprooved + ", isAdmitted=" + isAdmitted + "]";
 	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -12,14 +13,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta name="description" content="">
-<meta name="author" content="">
+<!-- REGISTRATION FORM SOURCE-CODE URL: >>>>>>>> https://bootsnipp.com/snippets/RlmZA -->
 
-<title>Welcome</title>
+<title>Faculty page</title>
 
-<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="lists_table.css" type="text/css" >
+<link rel="stylesheet" href="faculty-page.css" type="text/css" >
 </head>
 <body>
 
@@ -34,51 +35,59 @@
 	</div>
 
 	<!-- Page Content -->
+	
 	<div style="margin-left: 15%">
-	
-	
+
+
 		<div class="w3-container w3-teal">
-			<h1> ${list} FACULTY </h1>
+
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+				<form id="logoutForm" method="POST" action="${contextPath}/logout">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				</form>
+				<h1>${list} faculty</h1>
+				<h2> You are logged in as "${pageContext.request.userPrincipal.name}"  |
+					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
+
+				</h2>
+			</c:if>
 		</div>
 
 		<div class="w3-container">
-		  <c:if test="${pageContext.request.userPrincipal.name != null}">
-			 <form id="logoutForm" method="POST" action="${contextPath}/logout">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			 </form>
-			 <h2>
-				Welcome ${pageContext.request.userPrincipal.name} | 
-				<button  onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
-				
-			 </h2>
-		   </c:if>
-
-					<table class="lists-table">
+		
+		
+              <%--  ******************    to be rewieved  ******************
+              <table class="lists-table">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
-							<th>Personal Cabinet</th>
+							<th>Faculty</th>
+							<th>Marks total</th>
+							<!-- <th>Personal Cabinet</th> -->
 						</tr>
 						<c:forEach var="applicant" items="${applicants_list}">
 							<tr>
 								<td>${applicant.getUser().getName()}</td>
 								<td>${applicant.getUser().getSurname()}</td>
-								<td><a href="enterCabinet?id=${applicant.profileId}"></a></td>
+								<td>${applicant.getFaculty().getFacultyName()}</td>
+								<td>${applicant.getTotalMarksAmount()}</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</c:forEach>
 					</table>
-				  
-
-				<!-- / END class="w3-container" / -->
+					 
+                            *****************************************************************   --%>
+     
+			<!-- / END class="w3-container" / -->
 		</div>
 		
 		<!-- / END Page Content / -->
 	</div>
 
 
-	
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

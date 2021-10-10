@@ -2,36 +2,42 @@ package ua.lviv.lgs.project.domain;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "faculty_list")
+@Table(name = "faculties")
 public class Faculty {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "faculty_id")
-	private Short facultyId;
+	private Integer facultyId;
+	
 	private String facultyName;
 
 	@ElementCollection
-	@Column(name = "subjects_list")
+	@CollectionTable(name = "subjects_list", joinColumns = @JoinColumn(name = "fclt_id", referencedColumnName = "faculty_id"))
+	@Column(name = "subject", nullable = false)
 	private Set<String> subjectsList;
 
 	/*
-	 * All the profiles in a set is sorted descending by 'totalMarksAmount' field of
-	 * an ApplicantProfile.class and the number of admitted applicants are defined
+	 * Sort all the profiles descending by 'totalMarksAmount' field of
+	 * an ApplicantProfile.class and define the number of admitted applicants 
 	 * by 'admittanceQuota' field value
 	 * 
 	 */
-	@OneToMany(mappedBy = "faculty")
+	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL,
+	        orphanRemoval = true)
 	private Set<ApplicantProfile> applicantProfiles;
 
 	private Short admittanceQuota;
@@ -48,7 +54,7 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Faculty(Short facultyId, String facultyName, Set<String> subjectsList,
+	public Faculty(Integer facultyId, String facultyName, Set<String> subjectsList,
 			Set<ApplicantProfile> applicantProfiles, Short admittanceQuota) {
 		this.facultyId = facultyId;
 		this.facultyName = facultyName;
@@ -57,11 +63,11 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 
-	public Short getFacultyId() {
+	public Integer getFacultyId() {
 		return facultyId;
 	}
 
-	public void setFacultyId(Short facultyId) {
+	public void setFacultyId(Integer facultyId) {
 		this.facultyId = facultyId;
 	}
 
@@ -96,6 +102,17 @@ public class Faculty {
 	public void setAdmittanceQuota(Short admittanceQuota) {
 		this.admittanceQuota = admittanceQuota;
 	}
+	
+	public void addApplicantProfile(ApplicantProfile profile) {
+		applicantProfiles.add(profile);
+		profile.setFaculty(this);
+	}
+	
+	public void removeApplicantProfile(ApplicantProfile profile) {
+		applicantProfiles.remove(profile);
+		profile.setFaculty(null);
+	}
+	
 
 	@Override
 	public int hashCode() {
