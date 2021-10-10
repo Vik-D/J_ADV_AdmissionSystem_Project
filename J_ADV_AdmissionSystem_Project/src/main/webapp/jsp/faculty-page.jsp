@@ -54,29 +54,31 @@
 		</div>
 
 		<div class="w3-container">
-
-              <%-- 	*************** TO BE FURTHER REVIEWED, REDESIGNED AND ENCORPORATED ***************
-              
+		
+		
+              <%--  ******************    to be rewieved  ******************
               <table class="lists-table">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
-							<th>Personal Cabinet</th>
+							<th>Faculty</th>
+							<th>Marks total</th>
+							<!-- <th>Personal Cabinet</th> -->
 						</tr>
 						<c:forEach var="applicant" items="${applicants_list}">
 							<tr>
 								<td>${applicant.getUser().getName()}</td>
 								<td>${applicant.getUser().getSurname()}</td>
-								<td><a href="enterCabinet?id=${applicant.profileId}"></a></td>
+								<td>${applicant.getFaculty().getFacultyName()}</td>
+								<td>${applicant.getTotalMarksAmount()}</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 					 
-					*****************************************************                  --%>
-		
-
+                            *****************************************************************   --%>
+     
 			<!-- / END class="w3-container" / -->
 		</div>
 		

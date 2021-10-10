@@ -38,7 +38,7 @@ public class UserService {
 	public User getUserByUsername(String email) {
 		return userRepository.findOneByEmail(email).get();
 	}
-	
+
 	public User updateUser(User user) {
 		return userRepository.save(user);
 	}

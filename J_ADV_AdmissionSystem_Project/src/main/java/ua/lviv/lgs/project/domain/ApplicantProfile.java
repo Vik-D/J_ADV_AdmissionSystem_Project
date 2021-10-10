@@ -37,8 +37,8 @@ public class ApplicantProfile {
 	@JoinColumn(name = "profile_id")
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "apf_faculty_id")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "apf_faculty_id", referencedColumnName = "faculty_id")
 	private Faculty faculty;
 
 	/*

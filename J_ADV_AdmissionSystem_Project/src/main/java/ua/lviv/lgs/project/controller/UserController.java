@@ -63,18 +63,4 @@ public class UserController {
 		return "home";
 	}
 
-	// ***************** TO BE REVIEWED **********************
-
-//	@GetMapping("/applicants")
-//	public String listAllApplicants(HttpServletRequest req) {
-//		req.setAttribute("mode", "APPLICANTS_LIST");
-//		req.setAttribute("list", "Applicants list");
-//		return "home";
-//	}
-//
-//	@GetMapping("/faculty-page")
-//	public String registerApplicant(HttpServletRequest req) {
-//		return "faculty-page";
-//	}
-
 }

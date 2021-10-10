@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.lviv.lgs.project.dao.FacultyRepository;
-import ua.lviv.lgs.project.domain.ApplicantProfile;
 import ua.lviv.lgs.project.domain.Faculty;
 
 @Service
@@ -32,13 +31,9 @@ public class FacultyService {
 	}
 
 	public Set<String> getSubjectsListByFacultyID(Integer id) {
-		return facultyRepository.findById(id).get().getSubjectsList(); 
+		return facultyRepository.findById(id).get().getSubjectsList();
 	}
-	
-	public Set<ApplicantProfile> addApplicantProfile(ApplicantProfile profile) {
-		 return facultyRepository.save(profile);
-	}
-	
+
 	public Faculty save(Faculty faculty) {
 		return facultyRepository.saveAndFlush(faculty);
 	}

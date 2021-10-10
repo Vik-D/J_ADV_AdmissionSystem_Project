@@ -54,27 +54,6 @@
 		</div>
 
 		<div class="w3-container">
-
-              <%-- 	*************** TO BE FURTHER REVIEWED, REDESIGNED AND ENCORPORATED ***************
-              
-              <table class="lists-table">
-						<tr>
-							<th>Name</th>
-							<th>Surname</th>
-							<th>Personal Cabinet</th>
-						</tr>
-						<c:forEach var="applicant" items="${applicants_list}">
-							<tr>
-								<td>${applicant.getUser().getName()}</td>
-								<td>${applicant.getUser().getSurname()}</td>
-								<td><a href="enterCabinet?id=${applicant.profileId}"></a></td>
-							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</c:forEach>
-					</table>
-					 
-					*****************************************************                  --%>
 		
 			<div class="container">
 				<div class="row">

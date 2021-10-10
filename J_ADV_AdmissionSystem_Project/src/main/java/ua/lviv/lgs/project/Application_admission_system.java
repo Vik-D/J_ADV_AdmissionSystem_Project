@@ -16,7 +16,7 @@ public class Application_admission_system {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext ctx = SpringApplication.run(Application_admission_system.class, args);
 		FacultyService facultyService = ctx.getBean(FacultyService.class);
-		
+
 //		Faculty faculty1 = new Faculty();
 //		faculty1.setFacultyName("Mathematics");
 //		Set <String> subjectsSet1 = new HashSet<>();
@@ -67,7 +67,7 @@ public class Application_admission_system {
 //		facultyService.save(faculty3);
 //		facultyService.save(faculty4);
 //		facultyService.save(faculty5);
-		
+
 	}
 
 }

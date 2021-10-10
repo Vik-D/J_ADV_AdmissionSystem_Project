@@ -23,14 +23,12 @@
 </head>
 <body>
 
-
-
-
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
 		<a href="/users" class="w3-bar-item w3-button">Registered users list</a>
+		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
 		<a href="/faculties" class="w3-bar-item w3-button">Faculties list</a>
 	</div>
 
@@ -71,24 +69,27 @@
 					</table>
 				</c:when>
 				
-			  <%--   <c:when test="${mode == 'APPLICANTS_LIST' }">
+			    <c:when test="${mode == 'APPLICANTS_LIST' }">
 					<table class="lists-table">
 						<tr>
 							<th>Name</th>
 							<th>Surname</th>
-							<th>Personal Cabinet</th>
+							<th>Faculty</th>
+							<th>Marks total</th>
+							
 						</tr>
 						<c:forEach var="applicant" items="${applicants_list}">
 							<tr>
 								<td>${applicant.getUser().getName()}</td>
 								<td>${applicant.getUser().getSurname()}</td>
-								<td><a href="enterCabinet?id=${applicant.profileId}"></a></td>
+								<td>${applicant.getFaculty().getFacultyName()}</td>
+								<td>${applicant.getTotalMarksAmount()}</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</c:forEach>
 					</table>
-				</c:when>  --%>
+				</c:when>  
 			
 				 <c:when test="${mode == 'USERS_LIST' }">
 					<table class="lists-table">
@@ -115,8 +116,6 @@
 		<!-- / END Page Content / -->
 	</div>
 
-
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
