@@ -77,6 +77,8 @@ public class FacultyController {
 		profile.setTotalMarksAmount(marksTotal);
 		profile.setFaculty(faculty);
 		applicantProfileService.save(profile);
+		req.getSession().setAttribute("applicant",
+				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
 
 		return "redirect:/applicants";
 	}

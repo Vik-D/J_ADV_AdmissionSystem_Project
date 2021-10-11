@@ -11,6 +11,5 @@ import ua.lviv.lgs.project.domain.ApplicantProfile;
 public interface ApplicantProfileRepository extends JpaRepository<ApplicantProfile, Integer> {
  
 	Optional<ApplicantProfile> findById(Integer id);
-	
 }
  

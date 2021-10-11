@@ -28,4 +28,14 @@ public class ApplicantProfileService {
 	public ApplicantProfile findProfileById(Integer id) {
 		return applicantProfileRepository.getById(id);
 	}
+
+	public ApplicantProfile findProfileByEmail(String email) {
+		return applicantProfileRepository.findAll().stream()
+				.filter(prf -> prf.getUser().getEmail().equalsIgnoreCase(email)).findAny().get();
+	}
+
+	public List<String> findAllProfileEmails() {
+		return applicantProfileRepository.findAll().stream().map(prf -> prf.getUser().getEmail())
+				.collect(Collectors.toList());
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ua.lviv.lgs.project.domain.User;
+import ua.lviv.lgs.project.service.ApplicantProfileService;
 import ua.lviv.lgs.project.service.UserService;
 
 @Controller
@@ -19,6 +20,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private ApplicantProfileService applicantProfileService;
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
@@ -59,6 +63,11 @@ public class UserController {
 	public String welcome(Model model, HttpServletRequest req) {
 		req.getSession(true).setAttribute("user",
 				userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString()));
+		if (applicantProfileService.findAllProfileEmails().contains(req.getUserPrincipal().getName())) {
+			req.getSession().setAttribute("applicant",
+					applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
+		}
+
 		req.setAttribute("list", "Welcome!");
 		return "home";
 	}

@@ -60,9 +60,21 @@
 							<th>Enrollment</th>
 						</tr>
 						<c:forEach var="faculty" items="${faculties_list}">
+						
 							<tr>
 								<td>${faculty.facultyName}</td>
+								
+								
+								<c:if test="${applicant == null}">
 								<td><a href="enroll_${faculty.facultyId}">Press to enroll</a></td>
+								</c:if>
+								<c:if test="${applicant != null && applicant.faculty.getFacultyId()==faculty.facultyId}">
+								<td>ENROLLED</td>
+								</c:if>
+								<c:if test="${applicant != null && applicant.faculty.getFacultyId()!=faculty.facultyId}">
+								<td><p></p></td>
+								</c:if>
+								
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>

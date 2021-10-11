@@ -101,7 +101,7 @@
 								
 								<label class="col-md-4 control-label" for="textinput"> ${subject} </label>
 								<div class="col-md-4">
-									<input id="textinput" name="markinput" placeholder="REQUIRED SUBJECT!!! Enter your marks here! " 
+									<input id="textinput" name="markinput" placeholder="REQUIRED FIELD! Enter your marks here! " 
 									 class="form-control input-md" type="number"> <span class="help-block">
 									</span>
 								</div>
@@ -109,8 +109,7 @@
 							
 							</c:forEach>
 
-				<!--   **************** TO BE IMPLEMENTED IN THE NEXT LESSON ************
-							
+				
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="filebutton">Upload your school marks certificate </label>
 								<div class="col-md-4">
@@ -124,8 +123,6 @@
 									<input name="filebutton" class="input-file" id="photofilebutton" type="file">
 								</div>
 							</div> 
-							
-							************************** END TO BE IMPLEMENTED ******************************* -->
 							
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 							<!-- Button -->
