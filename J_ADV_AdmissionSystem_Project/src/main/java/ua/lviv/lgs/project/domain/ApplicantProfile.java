@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
@@ -51,8 +52,15 @@ public class ApplicantProfile {
 	private Map<String, Byte> marksTable;
 	
 	private Short totalMarksAmount;
+	
+	@Lob
+	@Column
 	private byte[] marksCertificate;
+	
+	@Lob
+	@Column
 	private byte[] profilePhoto;
+	
 	private boolean isEnrolled;
 	private boolean isApprooved;
 	private boolean isAdmitted;

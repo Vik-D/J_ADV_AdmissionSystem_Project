@@ -1,5 +1,6 @@
 package ua.lviv.lgs.project.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ua.lviv.lgs.project.domain.ApplicantProfile;
 import ua.lviv.lgs.project.domain.Faculty;
@@ -53,7 +56,9 @@ public class FacultyController {
 	}
 
 	@RequestMapping(value = "/faculty-page", method = RequestMethod.POST)
-	public String applicantEnrollment(Model model, HttpServletRequest req) {
+	public String applicantEnrollment(Model model, HttpServletRequest req,
+			@RequestParam("fileinput") MultipartFile file, @RequestParam("photoinput") MultipartFile photofile)
+			throws IOException {
 		User user = userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString());
 		ApplicantProfile profile = new ApplicantProfile();
 		Faculty faculty = facultyService.findOneFacultyById((Integer) req.getSession().getAttribute("facultyID"));
@@ -73,9 +78,11 @@ public class FacultyController {
 		userService.updateUser(user);
 		profile.setUser(user);
 		profile.setMarksTable(marks);
-		profile.setEnrolled(true);
 		profile.setTotalMarksAmount(marksTotal);
 		profile.setFaculty(faculty);
+		profile.setProfilePhoto(photofile.getBytes());
+		profile.setMarksCertificate(file.getBytes());
+		profile.setEnrolled(true);
 		applicantProfileService.save(profile);
 		req.getSession().setAttribute("applicant",
 				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
@@ -83,15 +90,14 @@ public class FacultyController {
 		return "redirect:/applicants";
 	}
 
-//	@GetMapping("/faculty-page")
-//	public String enrolledApplicantsList(HttpServletRequest req) {
-//		Integer user_id = userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString()).getId();
-//		String fclt_name = facultyService.findOneFacultyById(applicantProfileService.findProfileById(user_id).getProfileId()).getFacultyName();
-//		req.setAttribute("applicants_list",
-//				facultyService.findOneFacultyById(applicantProfileService.findProfileById(user_id).getProfileId())
-//						.getApplicantProfiles().stream().collect(Collectors.toList())); 
-//		req.setAttribute("list", fclt_name);
-//		return "faculty-page";
-//	}
+	@GetMapping("/faculty-page")
+	public String enrolledApplicantsList(HttpServletRequest req) {
+		Integer user_id = userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString()).getId();
+		Integer fclt_id = applicantProfileService.findProfileById(user_id).getFaculty().getFacultyId();
+		String fclt_name = applicantProfileService.findProfileById(user_id).getFaculty().getFacultyName();
+		req.setAttribute("faculty_applicants_list", applicantProfileService.findAllProfilesByFacultyId(fclt_id));
+		req.setAttribute("list", fclt_name);
+		return "faculty-page";
+	}
 
 }

@@ -59,7 +59,7 @@
 				<div class="row">
 					<h2 style="padding-left: 30%">Please, Fill-In An Enrollment Form!</h2>
 							
-					<form class="form-horizontal" action="/faculty-page" method="POST">
+					<form class="form-horizontal" action="/faculty-page" method="POST" enctype="multipart/form-data">
 						<fieldset>	
 					
 					<c:set var="currentUser" value="<%= pageContext.findAttribute(\"user\") %>" /> 
@@ -113,14 +113,14 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="filebutton">Upload your school marks certificate </label>
 								<div class="col-md-4">
-									<input name="filebutton" class="input-file" id="textfilebutton" type="file">
+									<input name="fileinput" class="input-file" id="file" type="file">
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="filebutton">Upload your photo</label>
 								<div class="col-md-4">
-									<input name="filebutton" class="input-file" id="photofilebutton" type="file">
+									<input name="photoinput" class="input-file" id="photofile" type="file">
 								</div>
 							</div> 
 							

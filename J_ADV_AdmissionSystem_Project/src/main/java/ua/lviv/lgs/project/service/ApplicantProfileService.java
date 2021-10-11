@@ -38,4 +38,9 @@ public class ApplicantProfileService {
 		return applicantProfileRepository.findAll().stream().map(prf -> prf.getUser().getEmail())
 				.collect(Collectors.toList());
 	}
+
+	public List<ApplicantProfile> findAllProfilesByFacultyId(Integer id) {
+		return applicantProfileRepository.findAll().stream().filter(prf -> prf.getFaculty().getFacultyId() == id)
+				.collect(Collectors.toList());
+	}
 }

@@ -56,7 +56,7 @@
 		<div class="w3-container">
 		
 		
-              <%--  ******************    to be rewieved  ******************
+              
               <table class="lists-table">
 						<tr>
 							<th>Name</th>
@@ -65,7 +65,7 @@
 							<th>Marks total</th>
 							<!-- <th>Personal Cabinet</th> -->
 						</tr>
-						<c:forEach var="applicant" items="${applicants_list}">
+						<c:forEach var="applicant" items="${faculty_applicants_list}">
 							<tr>
 								<td>${applicant.getUser().getName()}</td>
 								<td>${applicant.getUser().getSurname()}</td>
@@ -77,7 +77,7 @@
 						</c:forEach>
 					</table>
 					 
-                            *****************************************************************   --%>
+                           
      
 			<!-- / END class="w3-container" / -->
 		</div>
