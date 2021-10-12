@@ -13,14 +13,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<!-- REGISTRATION FORM SOURCE-CODE URL: >>>>>>>> https://bootsnipp.com/snippets/RlmZA -->
+<!-- REGISTRATION FORM SOURCE-CODE URL: >>>>>>>> https://bootsnipp.com/snippets/7n34K -->
 
-<title>Faculty page</title>
+<title>Approvals page</title>
 
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="faculty-page.css" type="text/css" >
+<link rel="stylesheet" href="approvals.css" type="text/css" >
 </head>
 <body>
 
@@ -45,43 +45,59 @@
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
-				<h1>${list} faculty</h1>
+				<h1>Approvals</h1>
 				<h2> You are logged in as "${pageContext.request.userPrincipal.name}"  |
 					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
 
 				</h2>
 			</c:if>
 		</div>
+		
+		<!-- profile data container -->
 
-		<div class="w3-container">
-		
-		
-              
-              <table class="lists-table">
-						<tr>
-							<th>Name</th>
-							<th>Surname</th>
-							<th>Faculty</th>
-							<th>Marks total</th>
-							<!-- <th>Personal Cabinet</th> -->
-						</tr>
-						<c:forEach var="applicant" items="${faculty_applicants_list}">
-							<tr>
-								<td>${applicant.getUser().getName()}</td>
-								<td>${applicant.getUser().getSurname()}</td>
-								<td>${applicant.getFaculty().getFacultyName()}</td>
-								<td>${applicant.getTotalMarksAmount()}</td>
-							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+		<c:forEach var="profile" items="${profiles_list}">
+			<div class="container approvals-row-contr">
+				<form:form action="${contextPath}/approvals" method="POST"> 
+					<input type="hidden" name="profileID" value="${profile.getProfileId()}"/>
+					<div class="form-row approval-upper-content">
+						<p> 
+							Profile <b>#${profile.getProfileId()}.</b> Applicant name/surname: <b>${profile.getUser().getName()}
+							${profile.getUser().getSurname()}.</b> Faculty:
+							<b>${profile.getFaculty().getFacultyName()}.</b> 
+							<a href="/fileDownload?id=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
+						</p>
+					</div>
+
+
+					<div class="form-row ">
+
+						<c:forEach var="subject" items="${profile.getMarksTable().entrySet()}">
+							<div class="col-md-2 mb-3">
+								<label for="markApprove">${subject.getKey()}</label> 
+								<input type="number" class="form-control is-valid" id="markApprove"
+									   name="markApprove" value="${subject.getValue()}" required/>
+								<input type="hidden" name="subjectName" value="${subject.getKey()}"/>
+							</div>
 						</c:forEach>
-					</table>
-					 
-                           
-     
-			<!-- / END class="w3-container" / -->
-		</div>
-		
+
+						<div class="form-group custom-control ">
+							<div class="custom-control custom-checkbox">
+								<div style="height: 1.8em"></div>
+								<div class="approval-controls">
+								<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
+								<label class="custom-control-label" for="finalCheck">Approve</label>
+								<button class="btn btn-primary" type="submit">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</form:form>
+			</div>
+			<!-- profile data container`s end -->
+		</c:forEach>
+
 		<!-- / END Page Content / -->
 	</div>
 

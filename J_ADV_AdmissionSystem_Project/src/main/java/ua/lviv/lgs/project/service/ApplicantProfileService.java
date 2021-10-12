@@ -18,11 +18,20 @@ public class ApplicantProfileService {
 	public ApplicantProfile save(ApplicantProfile profile) {
 		return applicantProfileRepository.save(profile);
 	}
+	
+	public ApplicantProfile update(ApplicantProfile profile) {
+		return applicantProfileRepository.saveAndFlush(profile);   
+	}
 
 	public List<ApplicantProfile> findAllProfiles() {
 		return applicantProfileRepository.findAll().stream()
 				.sorted((prf1, prf2) -> prf1.getUser().getSurname().compareToIgnoreCase(prf2.getUser().getSurname()))
 				.collect(Collectors.toList());
+	}
+
+	public List<ApplicantProfile> findAllNonApprovedProfilesSortedById() {
+		return applicantProfileRepository.findAll().stream().filter(prf -> prf.isApprooved() == false)
+				.sorted((prf1, prf2) -> prf1.getProfileId() - prf2.getProfileId()).collect(Collectors.toList());
 	}
 
 	public ApplicantProfile findProfileById(Integer id) {

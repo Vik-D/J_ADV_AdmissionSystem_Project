@@ -28,7 +28,7 @@
 
 
 	<!-- Sidebar -->
-	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
+	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
 		<a href="#" class="w3-bar-item w3-button">Enrolled applicants list</a>
@@ -36,7 +36,7 @@
 
 	<!-- Page Content -->
 	
-	<div style="margin-left: 15%">
+	<div class="div-left">
 
 
 		<div class="w3-container w3-teal">

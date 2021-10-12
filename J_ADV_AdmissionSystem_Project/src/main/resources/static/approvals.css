@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import "home.css";
+
+.approvals-row-contr {
+ width: 100%;
+ margin-left: 0;
+ padding-left: 0;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ border: 1px solid blue;  
+}
+
+.approval-controls{
+	float: right;
+}
+
+.download-reference{
+	text-decoration: underline;
+}
+
+.download-reference:hover{
+	cursor: pointer;
+}
+
+
+.approval-upper-content{
+	display: inline-block;
+	padding-left: 20px;
+}

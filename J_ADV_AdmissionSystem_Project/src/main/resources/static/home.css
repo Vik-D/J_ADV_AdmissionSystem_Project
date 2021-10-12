@@ -23,6 +23,19 @@
   color: white;
 }
 
+div.my-sidebar a.w3-bar-item.w3-button{
+	padding-right: 5px;
+}
+
+
+.my-sidebar{
+	width: 13%;	
+}
+
+div.div-left{
+	margin-left: 13%;
+}
+
 div .w3-teal h1,h2{
 	display: inline-block;
 }

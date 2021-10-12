@@ -24,16 +24,17 @@
 <body>
 
 	<!-- Sidebar -->
-	<div class="w3-sidebar w3-light-grey w3-bar-block" style="width: 15%">
+	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
 		<a href="/users" class="w3-bar-item w3-button">Registered users list</a>
 		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
 		<a href="/faculties" class="w3-bar-item w3-button">Faculties list</a>
+		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
 	</div>
 
 	<!-- Page Content -->
-	<div style="margin-left: 15%">
+	<div class="div-left">
 	
 	
 		<div class="w3-container w3-teal">

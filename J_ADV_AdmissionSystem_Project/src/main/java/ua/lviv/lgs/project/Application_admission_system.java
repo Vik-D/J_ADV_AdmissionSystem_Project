@@ -22,7 +22,7 @@ public class Application_admission_system {
 //		Set <String> subjectsSet1 = new HashSet<>();
 //		subjectsSet1.add("Algebra");
 //		subjectsSet1.add("Geometry");
-//		subjectsSet1.add("Ukrainian language");
+//		subjectsSet1.add("Ukr. language");
 //		faculty1.setSubjectsList(subjectsSet1);
 //		faculty1.setAdmittanceQuota((short) 20);
 //		
@@ -30,17 +30,17 @@ public class Application_admission_system {
 //		faculty2.setFacultyName("Philology");
 //		Set <String> subjectsSet2 = new HashSet<>();
 //		subjectsSet2.add("English");
-//		subjectsSet2.add("Ukrainian language");
-//		subjectsSet2.add("Ukrainian literature");
+//		subjectsSet2.add("Ukr. language");
+//		subjectsSet2.add("Ukr. literature");
 //		faculty2.setSubjectsList(subjectsSet2);
 //		faculty2.setAdmittanceQuota((short) 30);
 //		
 //		Faculty faculty3 = new Faculty();
 //		faculty3.setFacultyName("Chemistry");
 //		Set <String> subjectsSet3 = new HashSet<>();
-//		subjectsSet3.add("Inorganic chemistry");
+//		subjectsSet3.add("Chemistry");
 //		subjectsSet3.add("Physics");
-//		subjectsSet3.add("Ukrainian language");
+//		subjectsSet3.add("Ukr. language");
 //		faculty3.setSubjectsList(subjectsSet3);
 //		faculty3.setAdmittanceQuota((short) 25);
 //		
@@ -48,7 +48,7 @@ public class Application_admission_system {
 //		faculty4.setFacultyName("Biology");
 //		Set <String> subjectsSet4 = new HashSet<>();
 //		subjectsSet4.add("Botanics");
-//		subjectsSet4.add("Ukrainian language");
+//		subjectsSet4.add("Ukr. language");
 //		subjectsSet4.add("Zoology");
 //		faculty4.setSubjectsList(subjectsSet4);
 //		faculty4.setAdmittanceQuota((short) 25);
@@ -58,7 +58,7 @@ public class Application_admission_system {
 //		Set <String> subjectsSet5 = new HashSet<>();
 //		subjectsSet5.add("Informatics");
 //		subjectsSet5.add("Computer basics");
-//		subjectsSet5.add("Ukrainian language");
+//		subjectsSet5.add("Ukr. language");
 //		faculty5.setSubjectsList(subjectsSet5); 
 //		faculty5.setAdmittanceQuota((short) 22);
 //		
