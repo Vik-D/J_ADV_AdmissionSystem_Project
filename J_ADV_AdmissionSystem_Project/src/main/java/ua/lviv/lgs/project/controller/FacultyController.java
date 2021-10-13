@@ -99,5 +99,17 @@ public class FacultyController {
 		req.setAttribute("list", fclt_name);
 		return "faculty-page";
 	}
+	
+	@RequestMapping(value = "/approvals_{facultyID}", method = RequestMethod.GET)
+	public String facultyAdmittedApplicants(@PathVariable("facultyID") String facultyID, HttpServletRequest req) {
+		Integer faculty_id = Integer.parseInt(facultyID);
+		
+		req.setAttribute("approved_profiles", facultyService.getAllAcceptedApplicantsByFacultyIDSortedDesc(faculty_id)); 
+		req.getSession().setAttribute("facultyID", faculty_id);
+		
+		req.setAttribute("mode", "PROFILES_BY_FACULTY");
+		return "approvals";
+	}
+
 
 }

@@ -19,6 +19,9 @@
 
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+
 <link rel="stylesheet" href="home.css" type="text/css" >
 </head>
 <body>
@@ -33,7 +36,7 @@
 		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
 	</div>
 
-	<!-- Page Content -->
+	<!-- ***** WHOLE Page Content ***** -->
 	<div class="div-left">
 	
 	
@@ -51,9 +54,42 @@
 		   
 		</div>
 
+		<!-- **** main content **** -->
 		<div class="w3-container">
 
+
+			<!-- ***********  page modes section **************  -->
 			<c:choose>
+			<c:when test="${mode == 'HOME_MODE' }">
+			
+						<c:if test="${applicant == null}">
+			<h4>Welcome! To start your enrollment, press <a href="/faculties" class="user-reference">here</a>
+			    or open "Faculties list" tab from the menu (on your left).</h4>
+			</c:if>
+			
+			<!-- ****** Profile card ****** -->
+			<c:if test="${applicant != null}">
+
+						<div class="applicant-card">
+							<img src="showProfilePhoto?applicantID=${applicant.getProfileId()}" 
+							alt="Avatar" style="width: 40%">
+							<div class="applicant-card-container">
+								<h4>
+									<b>${applicant.getUser().getName()} ${applicant.getUser().getSurname()}</b>
+								</h4>
+								<p><b>Enrollment :</b> ${applicant.getFaculty().getFacultyName()} faculty</p>
+								<p><b>Document Approval Status :</b> ${applicant.isApprooved() == false ? "pending" : "approoved" }</p>
+								<p><b>Admittance status :</b>  ${applicant.isAdmitted() == false ? "pending" : "approoved" }</p>
+								<p><b></b></p>
+							</div>
+						</div>
+
+
+					</c:if>
+			<!-- ****** Profile card ends here ****** -->
+			
+			</c:when>
+			
 				<c:when test="${mode == 'FACULTIES_LIST' }">
 					<table class="lists-table">
 						<tr>
@@ -64,7 +100,6 @@
 						
 							<tr>
 								<td>${faculty.facultyName}</td>
-								
 								
 								<c:if test="${applicant == null}">
 								<td><a href="enroll_${faculty.facultyId}">Press to enroll</a></td>
@@ -123,13 +158,15 @@
 				
 			</c:choose>
 
-				<!-- / END class="w3-container" / -->
+				<!-- ***** END: class="w3-container" ******* -->
 		</div>
 		
-		<!-- / END Page Content / -->
+		<!-- ********* END: WHOLE Page Content ********** -->
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+	
+	
 </body>
 </html>

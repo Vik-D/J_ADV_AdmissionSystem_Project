@@ -77,3 +77,26 @@ div .w3-teal h2{
 	display: inline-block;
 	color: red;
 }
+
+.user-reference{
+	text-decoration: underline;
+}
+
+.user-reference:hover{
+	cursor: pointer;
+}
+
+
+.applicant-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+}
+
+.applicant-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.applicant-card-container {
+  padding: 2px 16px;
+}

@@ -38,7 +38,6 @@
 	
 	<div class="div-left">
 
-
 		<div class="w3-container w3-teal">
 
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
@@ -92,7 +91,7 @@
 									</span>
 								</div>
 							</div>
-							<p class="alert-msg" style="margin-left: 105px; display: inline-block"> Enter your marks from certificate into each of the required subjects field accordingly! </p>
+							<p class="alert-msg"> Enter your marks from certificate into each of the required subjects field accordingly! </p>
 							
 							<c:forEach var="subject" items="${subjects}">
 							

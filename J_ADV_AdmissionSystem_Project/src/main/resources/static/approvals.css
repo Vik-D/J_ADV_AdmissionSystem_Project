@@ -10,8 +10,9 @@
  border: 1px solid blue;  
 }
 
-.approval-controls{
-	float: right;
+.approval-upper-content{
+	display: inline-block;
+	padding-left: 20px;
 }
 
 .download-reference{
@@ -22,8 +23,8 @@
 	cursor: pointer;
 }
 
-
-.approval-upper-content{
-	display: inline-block;
-	padding-left: 20px;
+.approval-controls{
+	float: right;
 }
+
+

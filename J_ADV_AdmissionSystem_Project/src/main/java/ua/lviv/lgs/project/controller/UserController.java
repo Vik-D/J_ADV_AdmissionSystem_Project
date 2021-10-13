@@ -67,7 +67,7 @@ public class UserController {
 			req.getSession().setAttribute("applicant",
 					applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
 		}
-
+		req.setAttribute("mode", "HOME_MODE");
 		req.setAttribute("list", "Welcome!");
 		return "home";
 	}

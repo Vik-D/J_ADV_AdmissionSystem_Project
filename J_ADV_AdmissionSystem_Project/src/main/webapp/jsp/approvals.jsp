@@ -31,7 +31,11 @@
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="#" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
+		
+		<c:forEach var="faculty" items="${faculties_list}">
+		<a href="/approvals_${faculty.getFacultyId()}" class="w3-bar-item w3-button">${faculty.getFacultyName()}</a>
+		</c:forEach>
 	</div>
 
 	<!-- Page Content -->
@@ -54,7 +58,46 @@
 		</div>
 		
 		<!-- profile data container -->
+		<c:choose>
+		
+		<c:when test="${mode == 'PROFILES_BY_FACULTY' }">
+		
+		 <c:forEach var="a_profile" items="${approved_profiles}"> 
+			<div class="container approvals-row-contr">
+				<form:form > 
+					
+					<div class="form-row approval-upper-content">
+						<p><b>Name/Surname : </b>${a_profile.getUser().getName} ${a_profile.getUser().getSurname}</p>
+						<p><b>Total marks : </b>${a_profile.getTotalMarksAmount()}</p>
+						<p><b>Faculty enrollment : </b>${a_profile.getFaculty().getFacultyName()}</p>
+						<p><b></b>${a_profile}</p>
+						<p><b></b>${a_profile}</p>
+						<p><b></b></p>
+					</div>
 
+
+					<div class="form-row ">
+
+
+						<div class="form-group custom-control ">
+							<div class="custom-control custom-checkbox">
+								<div style="height: 1.8em"></div>
+								<div class="approval-controls">
+								<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
+								<label class="custom-control-label" for="finalCheck">Approve</label>
+								<button class="btn btn-primary" type="submit">Submit</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</form:form>
+			</div>
+			
+		</c:forEach> 
+		</c:when>
+		
+		<c:when test="${mode == 'PROFILES_APPROVAL' }">
 		<c:forEach var="profile" items="${profiles_list}">
 			<div class="container approvals-row-contr">
 				<form:form action="${contextPath}/approvals" method="POST"> 
@@ -64,7 +107,7 @@
 							Profile <b>#${profile.getProfileId()}.</b> Applicant name/surname: <b>${profile.getUser().getName()}
 							${profile.getUser().getSurname()}.</b> Faculty:
 							<b>${profile.getFaculty().getFacultyName()}.</b> 
-							<a href="/fileDownload?id=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
+							<a href="/fileDownload?profileID=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
 						</p>
 					</div>
 
@@ -97,7 +140,8 @@
 			</div>
 			<!-- profile data container`s end -->
 		</c:forEach>
-
+		</c:when>
+	</c:choose>
 		<!-- / END Page Content / -->
 	</div>
 
