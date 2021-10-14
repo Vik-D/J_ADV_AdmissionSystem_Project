@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+
+.registration-warning{
+	margin-bottom: 0.3rem;
+}
+
+.span-registration-warning{
+	color: red;
+	padding-top: 5px;
+	display : inline-block;
+}
+

@@ -16,6 +16,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="registration.css" type="text/css" >
 </head>
 
 <body class="bg-light">
@@ -43,11 +44,11 @@
                     </spring:bind>
                         
                     <spring:bind path="email">
-                        <div class="form-group ${status.error ? 'has-error' : ''}">
+                        <div class="form-group ${status.error ? 'has-error' : ''} registration-warning">
                             <label for="input_email">Email Address</label>
                             <form:input type="text" path="email" class="form-control" name="input_email" placeholder="Enter email" required="true"></form:input>
                             <form:errors path="email"></form:errors>
-                            <span>${msg}</span>
+                            <span class="span-registration-warning">${msg}</span>
                         </div>
                     </spring:bind>
                         

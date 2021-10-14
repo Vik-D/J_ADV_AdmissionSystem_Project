@@ -38,7 +38,7 @@ public class UserController {
 		if (userService.save(userForm)) {
 			return "redirect:/home";
 		}
-		model.addAttribute("msg", "This email already exists");
+		model.addAttribute("msg", "This email already exists!");
 		return "registration";
 	}
 
