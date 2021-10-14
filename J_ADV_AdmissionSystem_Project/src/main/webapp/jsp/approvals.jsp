@@ -62,39 +62,46 @@
 		
 		<c:when test="${mode == 'PROFILES_BY_FACULTY' }">
 		
-		 <c:forEach var="a_profile" items="${approved_profiles}"> 
 			<div class="container approvals-row-contr">
-				<form:form > 
-					
+			<form:form class="final-admittance-form"> 
+			<div class="form-row approval-upper-content">
+			<table class="final-admittance-table">
+					<tr>
+					<th class="name-display"><b> Name/Surname</b></th>
+					<th class="profile-data-display"><b> Faculty enrollment</b></th>
+					<th class="profile-data-display"><b> Total marks</b></th>
+					</tr>
+			</table>
+			</div>
+					<div class="approval-controls">
+						<input type="checkbox" class="custom-control-input" id="finalCheckAll" required> 
+						<label class="custom-control-label" for="finalCheckAll">ADMIT ALL</label>
+						<button class="btn btn-primary" type="submit">Submit</button>
+					</div>
+			<%-- </form:form> --%>
+			
+			 <c:forEach var="a_profile" items="${approved_profiles}"> 
+				<form:form class="final-admittance-form"> 
 					<div class="form-row approval-upper-content">
-						<p><b>Name/Surname : </b>${a_profile.getUser().getName} ${a_profile.getUser().getSurname}</p>
-						<p><b>Total marks : </b>${a_profile.getTotalMarksAmount()}</p>
-						<p><b>Faculty enrollment : </b>${a_profile.getFaculty().getFacultyName()}</p>
-						<p><b></b>${a_profile}</p>
-						<p><b></b>${a_profile}</p>
-						<p><b></b></p>
+					<table class="final-admittance-table">
+					<tr>
+						<td class="name-display">${a_profile.getUser().getName()} ${a_profile.getUser().getSurname()}</td>
+						<td class="profile-data-display"> ${a_profile.getFaculty().getFacultyName()}</td>
+						<td class="profile-data-display"> ${a_profile.getTotalMarksAmount()}</td>
+					</tr>
+					</table>
 					</div>
 
-
-					<div class="form-row ">
-
-
-						<div class="form-group custom-control ">
-							<div class="custom-control custom-checkbox">
-								<div style="height: 1.8em"></div>
-								<div class="approval-controls">
-								<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
-								<label class="custom-control-label" for="finalCheck">Approve</label>
-								<button class="btn btn-primary" type="submit">Submit</button>
-								</div>
-							</div>
-						</div>
+					<div class="approval-controls">
+						<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
+						<label class="custom-control-label" for="finalCheck">Admit</label>
+						<button class="btn btn-primary" type="submit">Submit</button>
 					</div>
-
 				</form:form>
+				</c:forEach> 
+				</form:form><!-- this line to be checked, see: line 81 -->
 			</div>
 			
-		</c:forEach> 
 		</c:when>
 		
 		<c:when test="${mode == 'PROFILES_APPROVAL' }">
@@ -127,8 +134,8 @@
 							<div class="custom-control custom-checkbox">
 								<div style="height: 1.8em"></div>
 								<div class="approval-controls">
-								<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
-								<label class="custom-control-label" for="finalCheck">Approve</label>
+								<input type="checkbox" class="custom-control-input" id="approveCheck" required> 
+								<label class="custom-control-label" for="approveCheck">Approve</label>
 								<button class="btn btn-primary" type="submit">Submit</button>
 								</div>
 							</div>

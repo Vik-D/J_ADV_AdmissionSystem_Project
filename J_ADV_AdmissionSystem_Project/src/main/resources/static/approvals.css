@@ -13,6 +13,23 @@
 .approval-upper-content{
 	display: inline-block;
 	padding-left: 20px;
+	width : 80%;
+}
+
+table.final-admittance-table{
+	width : 100%;
+}
+
+th.name-display, td.name-display{
+	width: 40%;
+}
+
+th.profile-data-display{
+	width : 11%;
+}
+
+td.profile-data-display{
+	width : 9%;
 }
 
 .download-reference{
@@ -25,6 +42,10 @@
 
 .approval-controls{
 	float: right;
+}
+
+.final-admittance-form{
+	margin : 15px 5px;
 }
 
 

@@ -112,7 +112,6 @@ public class Faculty {
 		applicantProfiles.remove(profile);
 		profile.setFaculty(null);
 	}
-	
 
 	@Override
 	public int hashCode() {

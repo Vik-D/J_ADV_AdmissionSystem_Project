@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +46,24 @@ public class ApplicantController {
 		req.setAttribute("profiles_list", applicantProfileService.findAllNonApprovedProfilesSortedById());
 		req.setAttribute("mode", "PROFILES_APPROVAL");
 		return "approvals"; 
+	}
+	
+	@RequestMapping(value = "/approvals_{facultyID}", method = RequestMethod.GET)
+	public String facultyAdmittedApplicants(@PathVariable("facultyID") String facultyID, HttpServletRequest req) {
+		Integer faculty_id = Integer.parseInt(facultyID);
+		Short bound = 0;
+		Short quota = facultyService.findOneFacultyById(faculty_id).getAdmittanceQuota();
+		Short size = (short) applicantProfileService.getAllApprovedApplicantsByFacultyIDSortedDesc(faculty_id).size();
+		if (quota >= size) {
+			bound = size;
+		} else {
+			bound = quota;
+		}
+		req.setAttribute("approved_profiles",
+				applicantProfileService.getAllApprovedApplicantsByFacultyIDSortedDesc(faculty_id).subList(0, bound));
+
+		req.setAttribute("mode", "PROFILES_BY_FACULTY");
+		return "approvals";
 	}
 
 	@RequestMapping(value = "/approvals", method = RequestMethod.POST)

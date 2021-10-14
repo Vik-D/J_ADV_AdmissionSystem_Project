@@ -52,4 +52,12 @@ public class ApplicantProfileService {
 		return applicantProfileRepository.findAll().stream().filter(prf -> prf.getFaculty().getFacultyId() == id)
 				.collect(Collectors.toList());
 	}
+	
+	public List<ApplicantProfile> getAllApprovedApplicantsByFacultyIDSortedDesc(Integer id) {
+		
+		return applicantProfileRepository.findAll().stream().filter(prf -> prf.isEnrolled() == true)
+				.filter(prf -> prf.isApprooved() == true).filter(prf -> prf.getFaculty().getFacultyId() == id)
+				.sorted((prf1, prf2) -> prf2.getTotalMarksAmount() - prf1.getTotalMarksAmount())
+				.collect(Collectors.toList()); 
+	}
 }

@@ -83,11 +83,8 @@
 								<p><b></b></p>
 							</div>
 						</div>
-
-
 					</c:if>
-			<!-- ****** Profile card ends here ****** -->
-			
+			<!-- ****** Profile card ends here ****** -->		
 			</c:when>
 			
 				<c:when test="${mode == 'FACULTIES_LIST' }">
@@ -124,7 +121,8 @@
 							<th>Surname</th>
 							<th>Faculty</th>
 							<th>Marks total</th>
-							
+							<th>Approval Status</th>
+							<th>Admittance Status</th>
 						</tr>
 						<c:forEach var="applicant" items="${applicants_list}">
 							<tr>
@@ -132,6 +130,8 @@
 								<td>${applicant.getUser().getSurname()}</td>
 								<td>${applicant.getFaculty().getFacultyName()}</td>
 								<td>${applicant.getTotalMarksAmount()}</td>
+								<td>${applicant.isApprooved() == false ? "" : "approoved" }</td>
+								<td>${applicant.isAdmitted() == false ? "" : "approoved" }</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
