@@ -82,15 +82,16 @@
 								</div>
 							</div>
 
-							<!-- Text input-->
-							<div class="form-group">
+							<!-- **** Text input: to be reviewed ***** -->
+							<%-- <div class="form-group">
 								<label class="col-md-4 control-label" for="emailinput">Check your email (change if incorrect)</label>
 								<div class="col-md-4">
 									<input id="textinput" name="emailinput" value="${pageContext.request.userPrincipal.name}" 
 									 class="form-control input-md" type="text"> <span class="help-block">
 									</span>
 								</div>
-							</div>
+							</div> --%>
+							
 							<p class="alert-msg"> Enter your marks from certificate into each of the required subjects field accordingly! </p>
 							
 							<c:forEach var="subject" items="${subjects}">
