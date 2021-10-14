@@ -47,6 +47,7 @@
                             <label for="input_email">Email Address</label>
                             <form:input type="text" path="email" class="form-control" name="input_email" placeholder="Enter email" required="true"></form:input>
                             <form:errors path="email"></form:errors>
+                            <span>${msg}</span>
                         </div>
                     </spring:bind>
                         

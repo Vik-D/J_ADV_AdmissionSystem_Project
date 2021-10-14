@@ -35,8 +35,11 @@ public class UserController {
 		if (bindingResult.hasErrors()) {
 			return "registration";
 		}
-		userService.save(userForm);
-		return "redirect:/home";
+		if (userService.save(userForm)) {
+			return "redirect:/home";
+		}
+		model.addAttribute("msg", "This email already exists");
+		return "registration";
 	}
 
 	@RequestMapping(value = { "/", "/login" }, method = RequestMethod.GET)

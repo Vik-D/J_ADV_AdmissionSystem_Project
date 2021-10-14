@@ -23,13 +23,15 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
 
-	public void save(User user) {
-		if(!userRepository.existsByEmail(user.getEmail())) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setPasswordConfirm(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
-		user.setRole(Role.ROLE_USER);
+	public boolean save(User user) {
+		if (!userRepository.existsByEmail(user.getEmail())) {
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			user.setPasswordConfirm(bCryptPasswordEncoder.encode(user.getPasswordConfirm()));
+			user.setRole(Role.ROLE_USER);
 			userRepository.save(user);
+			return true;
 		}
+		return false;
 	}
 
 	public List<User> getAllUsersBySurnameAlphabeticalOrder() {
