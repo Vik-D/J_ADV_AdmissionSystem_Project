@@ -34,8 +34,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/").permitAll()
-				.antMatchers("/approvals", "/enroll", "/faculties", "/faculty-page", "/home", "/users")
-				.access("hasRole('ROLE_USER')").anyRequest().permitAll().and().formLogin().loginPage("/login")
+				.antMatchers("/enroll", "/faculty-page", "/home", "/users")
+				.access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+				.antMatchers("/faculties").access("hasRole('ROLE_USER')")
+				.antMatchers("/approvals").access("hasRole('ROLE_ADMIN')")
+				.anyRequest().permitAll().and().formLogin().loginPage("/login")
 				.defaultSuccessUrl("/home").usernameParameter("email").passwordParameter("password").and().logout()
 				.logoutSuccessUrl("/login?logout").and().exceptionHandling().accessDeniedPage("/403").and().csrf();
 

@@ -20,3 +20,18 @@ div .form-group span.error-msg{
 	 text-shadow: 0.4px 1px 7px #edff2e;
 	 letter-spacing: 1px;
 }
+
+.welcome-img{
+	height : 70%;
+}
+
+.login-upper-field{
+	margin-top : 7%;
+	margin-bottom: 7%;
+}
+
+.login-bottom-field{
+	margin-bottom: 10%;
+}
+
+

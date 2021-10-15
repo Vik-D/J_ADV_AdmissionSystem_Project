@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,24 +25,25 @@
 </head>
 <body>
 
-
-
-
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
 		
+		<security:authorize access="hasRole('ROLE_ADMIN')"> 
+		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ROLE_ADMIN')"> 
 		<c:forEach var="faculty" items="${faculties_list}">
 		<a href="/approvals_${faculty.getFacultyId()}" class="w3-bar-item w3-button">${faculty.getFacultyName()}</a>
 		</c:forEach>
+		</security:authorize>
 	</div>
 
 	<!-- Page Content -->
 	
 	<div class="div-left">
-
 
 		<div class="w3-container w3-teal">
 
@@ -78,7 +80,6 @@
 						<label class="custom-control-label" for="finalCheckAll">ADMIT ALL</label>
 						<button class="btn btn-primary" type="submit">Submit</button>
 					</div>
-			<%-- </form:form> --%>
 			
 			 <c:forEach var="a_profile" items="${approved_profiles}"> 
 				<form:form class="final-admittance-form"> 
@@ -118,7 +119,6 @@
 						</p>
 					</div>
 
-
 					<div class="form-row ">
 
 						<c:forEach var="subject" items="${profile.getMarksTable().entrySet()}">
@@ -141,7 +141,6 @@
 							</div>
 						</div>
 					</div>
-
 
 				</form:form>
 			</div>

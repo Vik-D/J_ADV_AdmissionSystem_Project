@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -19,9 +20,6 @@
 
 <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
 <link rel="stylesheet" href="home.css" type="text/css" >
 </head>
 <body>
@@ -32,13 +30,18 @@
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
 		<a href="/users" class="w3-bar-item w3-button">Registered users list</a>
 		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		
+		<security:authorize access="hasRole('ROLE_USER')">
 		<a href="/faculties" class="w3-bar-item w3-button">Faculties list</a>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ROLE_ADMIN')"> 
 		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
+		</security:authorize>
 	</div>
 
 	<!-- ***** WHOLE Page Content ***** -->
 	<div class="div-left">
-	
 	
 		<div class="w3-container w3-teal">
 			
@@ -56,7 +59,6 @@
 
 		<!-- **** main content **** -->
 		<div class="w3-container">
-
 
 			<!-- ***********  page modes section **************  -->
 			<c:choose>
@@ -102,7 +104,7 @@
 								<td><a href="enroll_${faculty.facultyId}">Press to enroll</a></td>
 								</c:if>
 								<c:if test="${applicant != null && applicant.faculty.getFacultyId()==faculty.facultyId}">
-								<td>ENROLLED</td>
+								<td>ENROLLED <a href="/faculty-page" class="user-reference">(press to see statistics)</a></td>
 								</c:if>
 								<c:if test="${applicant != null && applicant.faculty.getFacultyId()!=faculty.facultyId}">
 								<td><p></p></td>
@@ -154,8 +156,7 @@
 						</c:forEach>
 					</table>
 				</c:when>
-				
-				
+								
 			</c:choose>
 
 				<!-- ***** END: class="w3-container" ******* -->
@@ -165,8 +166,6 @@
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-	
-	
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>	
 </body>
 </html>

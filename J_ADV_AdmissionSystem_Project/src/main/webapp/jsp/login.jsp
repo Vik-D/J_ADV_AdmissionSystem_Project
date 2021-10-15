@@ -31,10 +31,10 @@
                           <span>${message}</span>
                           
                             <label for="email">Email address</label>
-                            <input type="text" class="form-control" name="email" placeholder="Enter email">
+                            <input type="text" class="form-control login-upper-field" name="email" placeholder="Enter email">
                             
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Password">
+                            <input type="password" class="form-control login-bottom-field" name="password" placeholder="Password">
                             
                           <span class="error-msg">${error}</span>
                         </div>
@@ -45,9 +45,14 @@
 					    <a href="${contextPath}/registration" class="login_css">Create an account</a>
 				     </h5>
                 </div>
-                
-                
-            </div>
+
+			<div class="col-md-4">
+				<img alt="Img"
+					src="https://manometcurrent.com/wp-content/uploads/2021/06/Online-Admissions-Software-Market.png"
+					class="welcome-img">
+			</div>
+
+		</div>
         </div>
         <!-- /container -->
         

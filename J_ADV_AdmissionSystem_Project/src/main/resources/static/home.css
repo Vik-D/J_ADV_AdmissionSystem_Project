@@ -27,7 +27,6 @@ div.my-sidebar a.w3-bar-item.w3-button{
 	padding-right: 5px;
 }
 
-
 .my-sidebar{
 	width: 13%;	
 }
@@ -61,7 +60,7 @@ div .w3-teal h2{
 
 .user-logout-button:hover {
 	background-color: #3e8e41;
-	}
+}
 
 .user-logout-button:active {
   background-color: #3e8e41;

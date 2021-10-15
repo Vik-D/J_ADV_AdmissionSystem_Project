@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,20 +25,16 @@
 </head>
 <body>
 
-
-
-
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="#" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
 	</div>
 
 	<!-- Page Content -->
 	
 	<div class="div-left">
-
 
 		<div class="w3-container w3-teal">
 
@@ -54,9 +51,7 @@
 		</div>
 
 		<div class="w3-container">
-		
-		
-              
+		        
               <table class="lists-table">
 						<tr>
 							<th>Name</th>
@@ -77,14 +72,11 @@
 						</c:forEach>
 					</table>
 					 
-                           
-     
 			<!-- / END class="w3-container" / -->
 		</div>
 		
 		<!-- / END Page Content / -->
 	</div>
-
 
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

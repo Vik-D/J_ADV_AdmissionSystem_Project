@@ -23,7 +23,7 @@
         <div class="container p-2">
            <div class="row ml-1 mr-1">
 
-                <div class="col-md-8 py-5 border">
+                <div class="col-md-4 py-5 border">
                     <h2>Register</h2>
                     <form:form method="POST" modelAttribute="userForm" >
                     
@@ -72,7 +72,12 @@
                     </form:form>
                 </div>
                 
-                
+                <div class="col-md-4">
+				<img alt="Img"
+					src="https://manometcurrent.com/wp-content/uploads/2021/06/Online-Admissions-Software-Market.png"
+					class="welcome-img">
+			</div>
+			
             </div>
         </div>
         <!-- /container -->

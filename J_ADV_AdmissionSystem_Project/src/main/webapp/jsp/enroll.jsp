@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,14 +25,11 @@
 </head>
 <body>
 
-
-
-
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
 		<h3 class="w3-bar-item">Menu</h3>
 		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="#" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
 	</div>
 
 	<!-- Page Content -->
@@ -108,8 +106,7 @@
 							</div>
 							
 							</c:forEach>
-
-				
+			
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="filebutton">Upload your school marks certificate </label>
 								<div class="col-md-4">
@@ -139,7 +136,6 @@
 				</div>
 			</div>
 			
-
 			<!-- / END class="w3-container" / -->
 		</div>
 		
