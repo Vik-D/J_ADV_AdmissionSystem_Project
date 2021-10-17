@@ -34,4 +34,9 @@ div .form-group span.error-msg{
 	margin-bottom: 10%;
 }
 
+.language-choose{
+	float : left;
+	font-size: 13px;
+}
+
 
