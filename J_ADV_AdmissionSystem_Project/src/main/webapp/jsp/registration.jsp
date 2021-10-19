@@ -65,7 +65,7 @@
                         <div class="form-group ${status.error ? 'has-error' : ''}">
                             <label for="input_fname"><spring:message code="register.name"/></label>
                             <form:input type="text" path="name" class="form-control" name="input_fname" 
-                                        placeholder="<spring:message code='register.name'/>" required="true"></form:input>
+                                        placeholder="Ім'я/Name" required="true"></form:input>
                             <form:errors path="name"></form:errors>
                         </div>
                     </spring:bind>
@@ -74,7 +74,7 @@
                         <div class="form-group  ${status.error ? 'has-error' : ''}">
                             <label for="input_lname"><spring:message code="register.surname"/></label>
                             <form:input type="text" path="surname" class="form-control" name="input_lname" 
-                                        placeholder="<spring:message code='register.surname'/>" required="true"></form:input>
+                                        placeholder="Прізвище/Surname" required="true"></form:input>
                             <form:errors path="surname"></form:errors>
                         </div>
                     </spring:bind>
@@ -83,7 +83,7 @@
                         <div class="form-group ${status.error ? 'has-error' : ''} registration-warning">
                             <label for="input_email"><spring:message code="login.email"/></label>
                             <form:input type="text" path="email" class="form-control" name="input_email" 
-                                        placeholder="<spring:message code='login.email-placeholder'/>" required="true"></form:input>
+                                        placeholder="Електронна адреса/Email" required="true"></form:input>
                             <form:errors path="email"></form:errors>
                             <span class="span-registration-warning">${msg}</span>
                         </div>
