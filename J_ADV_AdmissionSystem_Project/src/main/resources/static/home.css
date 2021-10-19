@@ -85,7 +85,6 @@ div .w3-teal h2{
 	cursor: pointer;
 }
 
-
 .applicant-card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -98,4 +97,9 @@ div .w3-teal h2{
 
 .applicant-card-container {
   padding: 2px 16px;
+}
+
+.language-choose.main-menu{
+	position: absolute;
+	bottom: 0;
 }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -21,17 +21,36 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="approvals.css" type="text/css" >
+<link rel="stylesheet" href="approvals.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var selectedItem = localStorage.getItem("locales");
+		$('#locales').val(selectedItem ? selectedItem : 'en');
+		$('#locales').change(function() {
+
+			var selectedOption = $('#locales').val();
+			if (selectedOption) {
+				window.location.replace('?lang=' + selectedOption);
+				localStorage.setItem("locales", selectedOption);
+				
+			}
+		});
+	});
+</script>
+
 </head>
 <body>
 
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
-		<h3 class="w3-bar-item">Menu</h3>
-		<a href="/home" class="w3-bar-item w3-button">Home</a>
+		<h3 class="w3-bar-item"><spring:message code="all.menu"/></h3>
+		<a href="/home" class="w3-bar-item w3-button"><spring:message code="all.home"/></a>
 		
 		<security:authorize access="hasRole('ROLE_ADMIN')"> 
-		<a href="/approvals" class="w3-bar-item w3-button">Approvals</a>
+		<a href="/approvals" class="w3-bar-item w3-button"><spring:message code="all.approvals"/></a>
 		</security:authorize>
 		
 		<security:authorize access="hasRole('ROLE_ADMIN')"> 
@@ -39,6 +58,18 @@
 		<a href="/approvals_${faculty.getFacultyId()}" class="w3-bar-item w3-button">${faculty.getFacultyName()}</a>
 		</c:forEach>
 		</security:authorize>
+				<div class="language-choose main-menu">
+
+					<fieldset>
+						<label><spring:message code="all.choose_language"/></label> 
+						<select id="locales">
+							<option value="en"><spring:message code="all.english"/></option>
+							<option value="ua"><spring:message code="all.ukrainian"/></option>
+						</select>
+
+					</fieldset>
+
+				</div>
 	</div>
 
 	<!-- Page Content -->
@@ -51,9 +82,10 @@
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
-				<h1>Approvals</h1>
-				<h2> You are logged in as "${pageContext.request.userPrincipal.name}"  |
-					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
+				<h1><spring:message code="apr.title"/></h1>
+				<h2> <spring:message code="all.user-notify"/> "${pageContext.request.userPrincipal.name}"  |
+					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()">
+					<h4><spring:message code="all.logout"/></h4></button>
 
 				</h2>
 			</c:if>
@@ -69,16 +101,16 @@
 			<div class="form-row approval-upper-content">
 			<table class="final-admittance-table">
 					<tr>
-					<th class="name-display"><b> Name/Surname</b></th>
-					<th class="profile-data-display"><b> Faculty enrollment</b></th>
-					<th class="profile-data-display"><b> Total marks</b></th>
+					<th class="name-display"><b> <spring:message code="apr.name-surname"/></b></th>
+					<th class="profile-data-display"><b> <spring:message code="apr.faculty-enrolled"/></b></th>
+					<th class="profile-data-display"><b> <spring:message code="apr.marks"/></b></th>
 					</tr>
 			</table>
 			</div>
 					<div class="approval-controls">
 						<input type="checkbox" class="custom-control-input" id="finalCheckAll" required> 
-						<label class="custom-control-label" for="finalCheckAll">ADMIT ALL</label>
-						<button class="btn btn-primary" type="submit">Submit</button>
+						<label class="custom-control-label" for="finalCheckAll"><spring:message code="apr.admit-all"/></label>
+						<button class="btn btn-primary" type="submit"><spring:message code="apr.submit"/></button>
 					</div>
 			
 			 <c:forEach var="a_profile" items="${approved_profiles}"> 
@@ -95,8 +127,8 @@
 
 					<div class="approval-controls">
 						<input type="checkbox" class="custom-control-input" id="finalCheck" required> 
-						<label class="custom-control-label" for="finalCheck">Admit</label>
-						<button class="btn btn-primary" type="submit">Submit</button>
+						<label class="custom-control-label" for="finalCheck"><spring:message code="apr.admit"/></label>
+						<button class="btn btn-primary" type="submit"><spring:message code="apr.submit"/></button>
 					</div>
 				</form:form>
 				</c:forEach> 
@@ -112,8 +144,8 @@
 					<input type="hidden" name="profileID" value="${profile.getProfileId()}"/>
 					<div class="form-row approval-upper-content">
 						<p> 
-							Profile <b>#${profile.getProfileId()}.</b> Applicant name/surname: <b>${profile.getUser().getName()}
-							${profile.getUser().getSurname()}.</b> Faculty:
+							<spring:message code="apr.profile"/> <b><spring:message code="apr.profileNum"/>${profile.getProfileId()}.</b> Applicant name/surname: <b>${profile.getUser().getName()}
+							${profile.getUser().getSurname()}.</b> <spring:message code="apr.faculty"/>
 							<b>${profile.getFaculty().getFacultyName()}.</b> 
 							<a href="/fileDownload?profileID=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
 						</p>
@@ -135,8 +167,8 @@
 								<div style="height: 1.8em"></div>
 								<div class="approval-controls">
 								<input type="checkbox" class="custom-control-input" id="approveCheck" required> 
-								<label class="custom-control-label" for="approveCheck">Approve</label>
-								<button class="btn btn-primary" type="submit">Submit</button>
+								<label class="custom-control-label" for="approveCheck"><spring:message code="apr.approve"/></label>
+								<button class="btn btn-primary" type="submit"><spring:message code="apr.admit"/></button>
 								</div>
 							</div>
 						</div>

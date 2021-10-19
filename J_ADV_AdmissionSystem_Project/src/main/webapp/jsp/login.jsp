@@ -16,7 +16,8 @@
     <title>Log In</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" id="bootstrap-css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="login.css" type="text/css" >
+    <link rel="stylesheet" href="login.css" type="text/css">
+    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script type="text/javascript">
@@ -43,17 +44,17 @@
 				<div class="language-choose">
 
 					<fieldset>
-						<label><spring:message code="login.choose_language"/></label> 
+						<label><spring:message code="all.choose_language"/></label> 
 						<select id="locales">
-							<option value="en"><spring:message code="login.english"/></option>
-							<option value="ua"><spring:message code="login.ukrainian"/></option>
+							<option value="en"><spring:message code="all.english"/></option>
+							<option value="ua"><spring:message code="all.ukrainian"/></option>
 						</select>
 
 					</fieldset>
 
 				</div>
 				
-			 <div class="container p-2">	
+		<div class="container p-2">	
            <div class="row ml-1 mr-1"> 
            
               <div class="col-md-4 py-5 bg-info text-white">

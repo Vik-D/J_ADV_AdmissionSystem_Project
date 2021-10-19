@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -22,14 +22,45 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="faculty-page.css" type="text/css" >
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var selectedItem = localStorage.getItem("locales");
+		$('#locales').val(selectedItem ? selectedItem : 'en');
+		$('#locales').change(function() {
+
+			var selectedOption = $('#locales').val();
+			if (selectedOption) {
+				window.location.replace('?lang=' + selectedOption);
+				localStorage.setItem("locales", selectedOption);
+				
+			}
+		});
+	});
+</script>
+
 </head>
 <body>
 
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
-		<h3 class="w3-bar-item">Menu</h3>
-		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		<h3 class="w3-bar-item"><spring:message code="all.menu"/></h3>
+		<a href="/home" class="w3-bar-item w3-button"><spring:message code="all.home"/></a>
+		<a href="/applicants" class="w3-bar-item w3-button"><spring:message code="all.enrolled-applicants"/></a>
+				<div class="language-choose main-menu">
+
+					<fieldset>
+						<label><spring:message code="all.choose_language"/></label> 
+						<select id="locales">
+							<option value="en"><spring:message code="all.english"/></option>
+							<option value="ua"><spring:message code="all.ukrainian"/></option>
+						</select>
+
+					</fieldset>
+
+				</div>
 	</div>
 
 	<!-- Page Content -->
@@ -43,8 +74,9 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 				<h1>${list} faculty</h1>
-				<h2> You are logged in as "${pageContext.request.userPrincipal.name}"  |
-					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
+				<h2> <spring:message code="all.user-notify"/> "${pageContext.request.userPrincipal.name}"  |
+					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()">
+					<h4><spring:message code="all.logout"/></h4></button>
 
 				</h2>
 			</c:if>
@@ -54,7 +86,7 @@
 		
 			<div class="container">
 				<div class="row">
-					<h2 style="padding-left: 30%">Please, Fill-In An Enrollment Form!</h2>
+					<h2 style="padding-left: 30%"><spring:message code="enroll.announce"/></h2>
 							
 					<form class="form-horizontal" action="/faculty-page" method="POST" enctype="multipart/form-data">
 						<fieldset>	
@@ -63,7 +95,7 @@
 					
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="nameinput">Check your first name (change if incorrect)</label>
+								<label class="col-md-4 control-label" for="nameinput"><spring:message code="enroll.name-check"/></label>
 								<div class="col-md-4">
 									<input id="textinput" name="nameinput" value="${currentUser.name}"
 									class="form-control input-md" type="text">
@@ -73,7 +105,7 @@
 
 							<!-- Text input-->
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="surnameinput">Check your last name (change if incorrect)</label>
+								<label class="col-md-4 control-label" for="surnameinput"><spring:message code="enroll.surname-check"/></label>
 								<div class="col-md-4">
 									<input id="textinput" name="surnameinput" value="${currentUser.surname}" class="form-control input-md" type="text">
 									<span class="help-block"> </span>
@@ -90,7 +122,7 @@
 								</div>
 							</div> --%>
 							
-							<p class="alert-msg"> Enter your marks from certificate into each of the required subjects field accordingly! </p>
+							<p class="alert-msg"> <spring:message code="enroll.alert"/> </p>
 							
 							<c:forEach var="subject" items="${subjects}">
 							
@@ -99,7 +131,7 @@
 								
 								<label class="col-md-4 control-label" for="textinput"> ${subject} </label>
 								<div class="col-md-4">
-									<input id="textinput" name="markinput" placeholder="REQUIRED FIELD! Enter your marks here! " 
+									<input id="textinput" name="markinput" placeholder="<spring:message code='enroll.required-field'/>" 
 									 class="form-control input-md" type="number"> <span class="help-block">
 									</span>
 								</div>
@@ -108,14 +140,14 @@
 							</c:forEach>
 			
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton">Upload your school marks certificate </label>
+								<label class="col-md-4 control-label" for="filebutton"><spring:message code="enroll.certificate"/></label>
 								<div class="col-md-4">
 									<input name="fileinput" class="input-file" id="file" type="file">
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton">Upload your photo</label>
+								<label class="col-md-4 control-label" for="filebutton"><spring:message code="enroll.photo"/></label>
 								<div class="col-md-4">
 									<input name="photoinput" class="input-file" id="photofile" type="file">
 								</div>
@@ -126,7 +158,7 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label" for="singlebutton"> </label>
 								<div class="col-md-4">
-									<button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+									<button id="singlebutton" name="singlebutton" class="btn btn-primary"><spring:message code="enroll.submit"/></button>
 								</div>
 							</div>
 

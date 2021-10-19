@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -21,15 +21,34 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" id="bootstrap-css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="faculty-page.css" type="text/css" >
+<link rel="stylesheet" href="faculty-page.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		var selectedItem = localStorage.getItem("locales");
+		$('#locales').val(selectedItem ? selectedItem : 'en');
+		$('#locales').change(function() {
+
+			var selectedOption = $('#locales').val();
+			if (selectedOption) {
+				window.location.replace('?lang=' + selectedOption);
+				localStorage.setItem("locales", selectedOption);
+				
+			}
+		});
+	});
+</script>
+
 </head>
 <body>
 
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block my-sidebar">
-		<h3 class="w3-bar-item">Menu</h3>
-		<a href="/home" class="w3-bar-item w3-button">Home</a>
-		<a href="/applicants" class="w3-bar-item w3-button">Enrolled applicants list</a>
+		<h3 class="w3-bar-item"><spring:message code="all.menu"/></h3>
+		<a href="/home" class="w3-bar-item w3-button"><spring:message code="all.home"/></a>
+		<a href="/applicants" class="w3-bar-item w3-button"><spring:message code="all.enrolled-applicants"/></a>
 	</div>
 
 	<!-- Page Content -->
@@ -43,8 +62,9 @@
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				</form>
 				<h1>${list} faculty</h1>
-				<h2> You are logged in as "${pageContext.request.userPrincipal.name}"  |
-					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()"><h4>Logout</h4></button>
+				<h2> <spring:message code="all.user-notify"/> "${pageContext.request.userPrincipal.name}"  |
+					<button class="user-logout-button" onclick="document.forms['logoutForm'].submit()">
+					<h4><spring:message code="all.logout"/></h4></button>
 
 				</h2>
 			</c:if>
@@ -54,10 +74,10 @@
 		        
               <table class="lists-table">
 						<tr>
-							<th>Name</th>
-							<th>Surname</th>
-							<th>Faculty</th>
-							<th>Marks total</th>
+							<th><spring:message code="prf.name"/></th>
+							<th><spring:message code="prf.surname"/></th>
+							<th><spring:message code="prf.faculty"/></th>
+							<th><spring:message code="prf.marks"/></th>
 							<!-- <th>Personal Cabinet</th> -->
 						</tr>
 						<c:forEach var="applicant" items="${faculty_applicants_list}">
