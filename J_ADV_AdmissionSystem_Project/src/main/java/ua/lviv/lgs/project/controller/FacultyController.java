@@ -84,6 +84,7 @@ public class FacultyController {
 		profile.setMarksCertificate(file.getBytes());
 		profile.setEnrolled(true);
 		applicantProfileService.save(profile);
+		
 		req.getSession().setAttribute("applicant",
 				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
 

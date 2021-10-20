@@ -168,7 +168,7 @@
 								<td>${applicant.getUser().getSurname()}</td>
 								<td>${applicant.getFaculty().getFacultyName()}</td>
 								<td>${applicant.getTotalMarksAmount()}</td>
-								<td>${applicant.isApprooved() == false ? "" : "approved" }</td>
+								<td>${applicant.isApprooved() == false ? "" : "approved" }</td> 
 								<td>${applicant.isAdmitted() == false ? "" : "<spring:message code='prf.approoved'/>" }</td>
 							</tr>
 							<input type="hidden" name="${_csrf.parameterName}"

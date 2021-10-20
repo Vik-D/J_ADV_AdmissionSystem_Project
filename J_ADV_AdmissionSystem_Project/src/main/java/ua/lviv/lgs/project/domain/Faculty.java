@@ -36,8 +36,7 @@ public class Faculty {
 	 * by 'admittanceQuota' field value
 	 * 
 	 */
-	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL,
-	        orphanRemoval = true)
+	@OneToMany(mappedBy = "faculty")
 	private Set<ApplicantProfile> applicantProfiles;
 
 	private Short admittanceQuota;
@@ -103,15 +102,15 @@ public class Faculty {
 		this.admittanceQuota = admittanceQuota;
 	}
 	
-	public void addApplicantProfile(ApplicantProfile profile) {
-		applicantProfiles.add(profile);
-		profile.setFaculty(this);
-	}
-	
-	public void removeApplicantProfile(ApplicantProfile profile) {
-		applicantProfiles.remove(profile);
-		profile.setFaculty(null);
-	}
+//	public void addApplicantProfile(ApplicantProfile profile) {
+//		applicantProfiles.add(profile);
+//		profile.setFaculty(this);
+//	}
+//	
+//	public void removeApplicantProfile(ApplicantProfile profile) {
+//		applicantProfiles.remove(profile);
+//		profile.setFaculty(null);
+//	}
 
 	@Override
 	public int hashCode() {
