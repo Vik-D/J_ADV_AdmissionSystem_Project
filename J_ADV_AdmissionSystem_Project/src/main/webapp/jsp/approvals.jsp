@@ -112,7 +112,7 @@
 						<label class="custom-control-label" for="finalCheckAll"><spring:message code="apr.admit-all"/></label>
 						<button class="btn btn-primary" type="submit"><spring:message code="apr.submit"/></button>
 					</div>
-			
+			</form:form><!-- this line to be checked, see: line 100 -->
 			 <c:forEach var="a_profile" items="${approved_profiles}"> 
 				<form:form class="final-admittance-form"> 
 					<div class="form-row approval-upper-content">
@@ -132,7 +132,7 @@
 					</div>
 				</form:form>
 				</c:forEach> 
-				</form:form><!-- this line to be checked, see: line 81 -->
+				
 			</div>
 			
 		</c:when>

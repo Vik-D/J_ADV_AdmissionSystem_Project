@@ -4,6 +4,7 @@
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 60%;
+  margin-left : -16px;
 }
 
 .lists-table td, .lists-table th {
