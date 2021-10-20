@@ -6,11 +6,13 @@ import java.util.Set;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import ua.lviv.lgs.project.domain.Faculty;
 import ua.lviv.lgs.project.service.FacultyService;
 
 @SpringBootApplication
+@ComponentScan({"ua.lviv.lgs.project"})
 public class Application_admission_system {
 
 	public static void main(String[] args) {

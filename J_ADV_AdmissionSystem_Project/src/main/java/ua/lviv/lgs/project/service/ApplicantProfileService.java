@@ -29,19 +29,6 @@ public class ApplicantProfileService {
 		return applicantProfileRepository.saveAndFlush(profile);
 	}
 
-	public List<ApplicantProfile> findAllProfiles() {
-		LOGGER.debug("Getting all applicant profiles");
-		return applicantProfileRepository.findAll().stream()
-				.sorted((prf1, prf2) -> prf1.getUser().getSurname().compareToIgnoreCase(prf2.getUser().getSurname()))
-				.collect(Collectors.toList());
-	}
-
-	public List<ApplicantProfile> findAllNonApprovedProfilesSortedById() {
-		LOGGER.debug("Getting all applicant profiles : order by ID");
-		return applicantProfileRepository.findAll().stream().filter(prf -> prf.isApprooved() == false)
-				.sorted((prf1, prf2) -> prf1.getProfileId() - prf2.getProfileId()).collect(Collectors.toList());
-	}
-
 	public ApplicantProfile findProfileById(Integer id) {
 		LOGGER.debug("Getting applicant profile {} by id : " + id);
 		return applicantProfileRepository.getById(id);
@@ -49,8 +36,8 @@ public class ApplicantProfileService {
 
 	public ApplicantProfile findProfileByEmail(String email) {
 		LOGGER.debug("Getting applicant profile {} by email : " + email);
-		return applicantProfileRepository.findAll().stream()
-				.filter(prf -> prf.getUser().getEmail().equalsIgnoreCase(email)).findAny().get();
+		return applicantProfileRepository.findAll().stream().filter(prf -> prf.getUser().getEmail().equals(email))
+				.findAny().get();
 	}
 
 	public List<String> findAllProfileEmails() {
@@ -59,8 +46,21 @@ public class ApplicantProfileService {
 				.collect(Collectors.toList());
 	}
 
+	public List<ApplicantProfile> findAllProfiles() {
+		LOGGER.debug("Getting all applicant profiles, order by surnames alphabetically");
+		return applicantProfileRepository.findAll().stream()
+				.sorted((prf1, prf2) -> prf1.getUser().getSurname().compareToIgnoreCase(prf2.getUser().getSurname()))
+				.collect(Collectors.toList());
+	}
+
+	public List<ApplicantProfile> findAllNonApprovedProfilesSortedById() {
+		LOGGER.debug("Getting all applicant profiles : order by ID, non-approoved only");
+		return applicantProfileRepository.findAll().stream().filter(prf -> prf.isApprooved() == false)
+				.sorted((prf1, prf2) -> prf1.getProfileId() - prf2.getProfileId()).collect(Collectors.toList());
+	}
+
 	public List<ApplicantProfile> findAllProfilesByFacultyId(Integer id) {
-		LOGGER.debug("Getting all applicant profile by faculty id : " + id);
+		LOGGER.debug("Getting all applicant profiles belonging to one faculty by faculty id : " + id);
 		return applicantProfileRepository.findAll().stream().filter(prf -> prf.getFaculty().getFacultyId() == id)
 				.collect(Collectors.toList());
 	}
