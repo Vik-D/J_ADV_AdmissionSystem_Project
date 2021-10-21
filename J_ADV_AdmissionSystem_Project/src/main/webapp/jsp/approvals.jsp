@@ -144,9 +144,9 @@
 					<input type="hidden" name="profileID" value="${profile.getProfileId()}"/>
 					<div class="form-row approval-upper-content">
 						<p> 
-							<spring:message code="apr.profile"/> <b><spring:message code="apr.profileNum"/>${profile.getProfileId()}.</b> Applicant name/surname: <b>${profile.getUser().getName()}
-							${profile.getUser().getSurname()}.</b> <spring:message code="apr.faculty"/>
-							<b>${profile.getFaculty().getFacultyName()}.</b> 
+							<spring:message code="apr.profile"/> <b><spring:message code="apr.profileNum"/>${profile.getProfileId()}.</b> 
+							<spring:message code="apr.applicant-name-surname"/> <b>${profile.getUser().getName()} ${profile.getUser().getSurname()}.</b> 
+							<spring:message code="apr.faculty"/> <b>${profile.getFaculty().getFacultyName()}.</b> 
 							<a href="/fileDownload?profileID=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
 						</p>
 					</div>

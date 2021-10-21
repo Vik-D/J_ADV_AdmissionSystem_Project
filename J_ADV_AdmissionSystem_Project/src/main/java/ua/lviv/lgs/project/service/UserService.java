@@ -48,7 +48,7 @@ public class UserService {
 	}
 
 	public User getUserByUsername(String email) {
-		LOGGER.info("Getting user {} by provided username(username=email) : " + email);
+		LOGGER.info("Getting user {} by provided username(username equals email) : " + email);
 		return userRepository.findOneByEmail(email).get();
 	}
 

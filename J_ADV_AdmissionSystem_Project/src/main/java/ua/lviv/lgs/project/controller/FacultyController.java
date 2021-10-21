@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,8 @@ import ua.lviv.lgs.project.service.UserService;
 @Controller
 public class FacultyController {
 
+	private Logger LOGGER = LoggerFactory.getLogger(FacultyController.class);
+	
 	@Autowired
 	private FacultyService facultyService;
 
@@ -56,9 +60,9 @@ public class FacultyController {
 	}
 
 	@RequestMapping(value = "/faculty-page", method = RequestMethod.POST)
-	public String applicantEnrollment(Model model, HttpServletRequest req,
-			@RequestParam("fileinput") MultipartFile file, @RequestParam("photoinput") MultipartFile photofile)
-			throws IOException {
+	public String applicantEnrollment(HttpServletRequest req, @RequestParam("fileinput") MultipartFile file,
+			@RequestParam("photoinput") MultipartFile photofile) throws IOException {
+		
 		User user = userService.getUserByUsername(req.getUserPrincipal().getName().trim().toString());
 		ApplicantProfile profile = new ApplicantProfile();
 		Faculty faculty = facultyService.findOneFacultyById((Integer) req.getSession().getAttribute("facultyID"));
@@ -74,7 +78,6 @@ public class FacultyController {
 
 		user.setName(req.getParameter("nameinput"));
 		user.setSurname(req.getParameter("surnameinput"));
-//		user.setEmail(req.getParameter("emailinput"));
 		userService.updateUser(user);
 		profile.setUser(user);
 		profile.setMarksTable(marks);
@@ -84,10 +87,11 @@ public class FacultyController {
 		profile.setMarksCertificate(file.getBytes());
 		profile.setEnrolled(true);
 		applicantProfileService.save(profile);
+		LOGGER.debug("COMMAND EXECUTED: ->>>> applicantProfileService.save(profile)");
 		
-		req.getSession().setAttribute("applicant",
-				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
-
+//		req.getSession().setAttribute("applicant",
+//				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
+//
 		return "redirect:/applicants";
 	}
 

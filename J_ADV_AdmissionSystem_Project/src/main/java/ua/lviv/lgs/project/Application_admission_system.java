@@ -26,7 +26,7 @@ public class Application_admission_system {
 //		subjectsSet1.add("Geometry");
 //		subjectsSet1.add("Ukr. language");
 //		faculty1.setSubjectsList(subjectsSet1);
-//		faculty1.setAdmittanceQuota((short) 20);
+//		faculty1.setAdmittanceQuota((short) 4);
 //		
 //		Faculty faculty2 = new Faculty();
 //		faculty2.setFacultyName("Philology");
@@ -35,7 +35,7 @@ public class Application_admission_system {
 //		subjectsSet2.add("Ukr. language");
 //		subjectsSet2.add("Ukr. literature");
 //		faculty2.setSubjectsList(subjectsSet2);
-//		faculty2.setAdmittanceQuota((short) 30);
+//		faculty2.setAdmittanceQuota((short) 4);
 //		
 //		Faculty faculty3 = new Faculty();
 //		faculty3.setFacultyName("Chemistry");
@@ -44,7 +44,7 @@ public class Application_admission_system {
 //		subjectsSet3.add("Physics");
 //		subjectsSet3.add("Ukr. language");
 //		faculty3.setSubjectsList(subjectsSet3);
-//		faculty3.setAdmittanceQuota((short) 25);
+//		faculty3.setAdmittanceQuota((short) 4);
 //		
 //		Faculty faculty4 = new Faculty();
 //		faculty4.setFacultyName("Biology");
@@ -53,7 +53,7 @@ public class Application_admission_system {
 //		subjectsSet4.add("Ukr. language");
 //		subjectsSet4.add("Zoology");
 //		faculty4.setSubjectsList(subjectsSet4);
-//		faculty4.setAdmittanceQuota((short) 25);
+//		faculty4.setAdmittanceQuota((short) 4);
 //		
 //		Faculty faculty5 = new Faculty();
 //		faculty5.setFacultyName("Informatics");
@@ -62,7 +62,7 @@ public class Application_admission_system {
 //		subjectsSet5.add("Computer basics");
 //		subjectsSet5.add("Ukr. language");
 //		faculty5.setSubjectsList(subjectsSet5); 
-//		faculty5.setAdmittanceQuota((short) 22);
+//		faculty5.setAdmittanceQuota((short) 4);
 //		
 //		facultyService.save(faculty1);
 //		facultyService.save(faculty2);
