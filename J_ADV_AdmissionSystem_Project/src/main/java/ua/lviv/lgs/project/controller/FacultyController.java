@@ -82,10 +82,11 @@ public class FacultyController {
 		profile.setUser(user);
 		profile.setMarksTable(marks);
 		profile.setTotalMarksAmount(marksTotal);
-		profile.setFaculty(faculty);
 		profile.setProfilePhoto(photofile.getBytes());
 		profile.setMarksCertificate(file.getBytes());
 		profile.setEnrolled(true);
+		
+		profile.setFaculty(faculty);
 		applicantProfileService.save(profile);
 		LOGGER.debug("COMMAND EXECUTED: ->>>> applicantProfileService.save(profile)");
 		
