@@ -8,11 +8,8 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +26,6 @@ import ua.lviv.lgs.project.service.UserService;
 
 @Controller
 public class FacultyController {
-
-	private Logger LOGGER = LoggerFactory.getLogger(FacultyController.class);
 	
 	@Autowired
 	private FacultyService facultyService;
@@ -75,7 +70,7 @@ public class FacultyController {
 			marks.put(subj_list.get(i), Byte.parseByte(marks_arr[i]));
 			marksTotal = (short) (marksTotal + Short.parseShort(marks_arr[i]));
 		}
-
+		
 		user.setName(req.getParameter("nameinput"));
 		user.setSurname(req.getParameter("surnameinput"));
 		userService.updateUser(user);
@@ -85,14 +80,13 @@ public class FacultyController {
 		profile.setProfilePhoto(photofile.getBytes());
 		profile.setMarksCertificate(file.getBytes());
 		profile.setEnrolled(true);
-		
 		profile.setFaculty(faculty);
+
 		applicantProfileService.save(profile);
-		LOGGER.debug("COMMAND EXECUTED: ->>>> applicantProfileService.save(profile)");
 		
-//		req.getSession().setAttribute("applicant",
-//				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
-//
+		req.getSession().setAttribute("applicant",
+				applicantProfileService.findProfileByEmail(req.getUserPrincipal().getName()));
+
 		return "redirect:/applicants";
 	}
 
