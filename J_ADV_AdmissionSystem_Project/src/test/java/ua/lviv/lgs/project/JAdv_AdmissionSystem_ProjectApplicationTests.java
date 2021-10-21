@@ -376,6 +376,12 @@ class JAdv_AdmissionSystem_ProjectApplicationTests {
 		user.setPassword("1");
 		user.setPasswordConfirm("1");
 		user.setRole(Role.ROLE_USER);
+		
+		Faculty fcl1 = new Faculty();
+		fcl1.setFacultyName("FCL");
+		
+		Faculty fclUpdated = new Faculty();
+		fclUpdated.setFacultyName("FCL_Updated"); 
 
 		List<ApplicantProfile> profiles = applicantProfileRepository.findAll();
 		assertThat(profiles, hasSize(0));
@@ -386,6 +392,7 @@ class JAdv_AdmissionSystem_ProjectApplicationTests {
 		profile1.setEnrolled(false);
 		profile1.setTotalMarksAmount((short) 10);
 		profile1.setUser(user);
+		profile1.setFaculty(fcl1);
 
 		applicantProfileRepository.save(profile1);
 		profiles = applicantProfileRepository.findAll();
@@ -404,6 +411,7 @@ class JAdv_AdmissionSystem_ProjectApplicationTests {
 		profileFromDB_toUpdate.setEnrolled(true);
 		profileFromDB_toUpdate.setTotalMarksAmount((short) 50);
 		profileFromDB_toUpdate.setUser(user);
+		profileFromDB_toUpdate.setFaculty(fclUpdated); 
 
 		applicantProfileService.update(profileFromDB_toUpdate);
 		profiles = applicantProfileRepository.findAll();
@@ -618,9 +626,9 @@ class JAdv_AdmissionSystem_ProjectApplicationTests {
 
 		List<ApplicantProfile> profilesFromDB = applicantProfileService.findAllProfiles();
 		assertTrue(profilesFromDB.size() == profilesSize);
-		assertTrue(profilesFromDB.get(0).getUser().getSurname().equals("A"));
+		assertTrue(profilesFromDB.get(0).getUser().getSurname().equals("X"));
 		assertTrue(profilesFromDB.get(1).getUser().getSurname().equals("F"));
-		assertTrue(profilesFromDB.get(2).getUser().getSurname().equals("X"));
+		assertTrue(profilesFromDB.get(2).getUser().getSurname().equals("A"));
 	}
 
 	@Test
