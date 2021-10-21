@@ -162,10 +162,15 @@ public class Faculty {
 		return true;
 	}
 
+	// FACULTY toString() 
+	
 	@Override
 	public String toString() {
-		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectsList=" + subjectsList
-				+ ", applicantProfiles=" + applicantProfiles + ", admittanceQuota=" + admittanceQuota + "]";
+		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectsList=" + subjectsList.size()
+				+ ", applicantProfiles=" + applicantProfiles.size() + ", admittanceQuota=" + admittanceQuota + "]";
 	}
 
 }
+
+
+

@@ -235,12 +235,12 @@ public class ApplicantProfile {
 		return true;
 	}
 
+	// ApplicantProfile toString()
+	
 	@Override
 	public String toString() {
-		return "ApplicantProfile [profileId=" + profileId + ", user=" + user + ", faculty=" + faculty + ", marksTable="
-				+ marksTable + ", totalMarksAmount=" + totalMarksAmount + ", marksCertificate="
-				+ Arrays.toString(marksCertificate) + ", profilePhoto=" + Arrays.toString(profilePhoto)
-				+ ", isEnrolled=" + isEnrolled + ", isApprooved=" + isApprooved + ", isAdmitted=" + isAdmitted + "]";
+		return "ApplicantProfile [profileId=" + profileId + ", user=" + user.getEmail() + ", faculty="
+				+ faculty.getFacultyName() + "]";
 	}
 
 }
