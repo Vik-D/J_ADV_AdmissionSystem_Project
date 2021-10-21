@@ -47,10 +47,8 @@ public class ApplicantProfileService {
 	}
 
 	public List<ApplicantProfile> findAllProfiles() {
-		LOGGER.debug("Getting all applicant profiles, order by surnames alphabetically");
-		return applicantProfileRepository.findAll().stream()
-				.sorted((prf1, prf2) -> prf1.getUser().getSurname().compareToIgnoreCase(prf2.getUser().getSurname()))
-				.collect(Collectors.toList());
+		LOGGER.debug("Getting all applicant profiles");
+		return applicantProfileRepository.findAll();
 	}
 
 	public List<ApplicantProfile> findAllNonApprovedProfilesSortedById() {

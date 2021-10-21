@@ -3,6 +3,7 @@ package ua.lviv.lgs.project.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,9 +35,13 @@ public class ApplicantController {
 
 	@GetMapping("/applicants")
 	public String listAllApplicants(HttpServletRequest req) {
-		req.setAttribute("applicants_list", applicantProfileService.findAllProfiles());
 		req.setAttribute("mode", "APPLICANTS_LIST");
 		req.setAttribute("list", "Applicants list");
+		req.setAttribute("applicants_list", applicantProfileService.findAllProfiles());
+				
+//				.stream()
+//				.sorted((prf1, prf2) -> prf1.getUser().getSurname().compareToIgnoreCase(prf2.getUser().getSurname()))
+//				.collect(Collectors.toList()));
 		return "home";
 	}
 

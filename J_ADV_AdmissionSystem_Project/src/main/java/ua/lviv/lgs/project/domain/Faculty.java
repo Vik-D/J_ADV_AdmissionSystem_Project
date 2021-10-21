@@ -36,7 +36,8 @@ public class Faculty {
 	 * by 'admittanceQuota' field value
 	 * 
 	 */
-	@OneToMany(mappedBy = "faculty")
+	@OneToMany(mappedBy = "faculty", cascade = CascadeType.ALL,
+	        orphanRemoval = true)
 	private Set<ApplicantProfile> applicantProfiles;
 
 	private Short admittanceQuota;

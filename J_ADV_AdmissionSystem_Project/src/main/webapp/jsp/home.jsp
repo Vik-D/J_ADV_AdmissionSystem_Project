@@ -171,8 +171,7 @@
 								<td>${applicant.isApprooved() == false ? "" : "approved" }</td> 
 								<td>${applicant.isAdmitted() == false ? "" : "<spring:message code='prf.approoved'/>" }</td>
 							</tr>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						</c:forEach>
 					</table>
 				</c:when>  

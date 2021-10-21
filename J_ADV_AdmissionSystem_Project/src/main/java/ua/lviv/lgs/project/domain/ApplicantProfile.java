@@ -33,12 +33,12 @@ public class ApplicantProfile {
 	 * Ensuring that id-numbers of User-entity and ApplicantProfile-entity are
 	 * shared and thus the same
 	 */
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@MapsId
 	@JoinColumn(name = "profile_id")
 	private User user;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "apf_faculty_id", referencedColumnName = "faculty_id")
 	private Faculty faculty;
 
