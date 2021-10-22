@@ -7,7 +7,8 @@
 }
 
 /* input#file.input-file.enroll-page, input#photofile.input-file.enroll-page */
+/* --- not working, though had to...
 
 input[type=file]::-webkit-file-upload-button {
 	cursor : pointer;
-}
+} */
