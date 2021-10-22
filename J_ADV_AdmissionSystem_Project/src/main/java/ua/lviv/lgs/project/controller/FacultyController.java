@@ -73,6 +73,7 @@ public class FacultyController {
 		
 		user.setName(req.getParameter("nameinput"));
 		user.setSurname(req.getParameter("surnameinput"));
+//		user.setEmail(req.getParameter("emailinput"));
 		userService.updateUser(user);
 		profile.setUser(user);
 		profile.setMarksTable(marks);

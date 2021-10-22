@@ -113,6 +113,10 @@
 							</div>
 
 							<!-- **** Text input: to be reviewed ***** -->
+							<!-- if the next commented div-container deemed necessary to implement, 
+							     a relevant handler-line needs to be uncommented:
+							     "user.setEmail(req.getParameter("emailinput"));"
+							     location: ua.lviv.lgs.project.controller.FacultyController in 'applicantEnrollment' method -->
 							<%-- <div class="form-group">
 								<label class="col-md-4 control-label" for="emailinput">Check your email (change if incorrect)</label>
 								<div class="col-md-4">
