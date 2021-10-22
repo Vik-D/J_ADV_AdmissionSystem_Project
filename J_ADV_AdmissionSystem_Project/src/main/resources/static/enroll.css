@@ -5,3 +5,9 @@
 	margin-left: 105px;
 	display: inline-block;
 }
+
+/* input#file.input-file.enroll-page, input#photofile.input-file.enroll-page */
+
+input[type=file]::-webkit-file-upload-button {
+	cursor : pointer;
+}

@@ -147,7 +147,8 @@
 							<spring:message code="apr.profile"/> <b><spring:message code="apr.profileNum"/>${profile.getProfileId()}.</b> 
 							<spring:message code="apr.applicant-name-surname"/> <b>${profile.getUser().getName()} ${profile.getUser().getSurname()}.</b> 
 							<spring:message code="apr.faculty"/> <b>${profile.getFaculty().getFacultyName()}.</b> 
-							<a href="/fileDownload?profileID=${profile.getProfileId()}" target="_blank" class="download-reference"><i>Download profile certificate</i></a>
+							<a href="/fileDownload?profileID=${profile.getProfileId()}" target="_blank" class="download-reference">
+							<i><spring:message code="apr.download-msg"/></i></a>
 						</p>
 					</div>
 
@@ -168,7 +169,7 @@
 								<div class="approval-controls">
 								<input type="checkbox" class="custom-control-input" id="approveCheck" required> 
 								<label class="custom-control-label" for="approveCheck"><spring:message code="apr.approve"/></label>
-								<button class="btn btn-primary" type="submit"><spring:message code="apr.admit"/></button>
+								<button class="btn btn-primary" type="submit"><spring:message code="apr.submit"/></button>
 								</div>
 							</div>
 						</div>

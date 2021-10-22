@@ -166,8 +166,7 @@ public class Faculty {
 	
 	@Override
 	public String toString() {
-		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName + ", subjectsList=" + subjectsList.size()
-				+ ", applicantProfiles=" + applicantProfiles.size() + ", admittanceQuota=" + admittanceQuota + "]";
+		return "Faculty [facultyId=" + facultyId + ", facultyName=" + facultyName  + "]";
 	}
 
 }

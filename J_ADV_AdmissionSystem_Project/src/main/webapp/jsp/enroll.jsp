@@ -140,16 +140,16 @@
 							</c:forEach>
 			
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton"><spring:message code="enroll.certificate"/></label>
+								<label class="col-md-4 control-label" for="file"><spring:message code="enroll.certificate"/></label>
 								<div class="col-md-4">
-									<input name="fileinput" class="input-file" id="file" type="file">
+									<input name="fileinput" class="input-file enroll-page" id="file" type="file">
 								</div>
 							</div>
 							
 							<div class="form-group">
-								<label class="col-md-4 control-label" for="filebutton"><spring:message code="enroll.photo"/></label>
+								<label class="col-md-4 control-label" for="photofile"><spring:message code="enroll.photo"/></label>
 								<div class="col-md-4">
-									<input name="photoinput" class="input-file" id="photofile" type="file">
+									<input name="photoinput" class="input-file enroll-page" id="photofile" type="file">
 								</div>
 							</div> 
 							
